@@ -42,7 +42,7 @@ def bigramsPOS(tokenAnalized):
 # calcola lunghezza media in token delle frasi (numero tokens/numero frasi)
 def lungMediaFrasi(numFrasi, numTokens):
     media = 0.0
-    media = numTokens / numFrasi
+    media = numTokens * 1.0 / numFrasi * 1.0  # cast a float moltiplicando per 1.0
 
     return media
 
@@ -67,20 +67,10 @@ def vocabularyCount(tokensList):
 
 
 # calcola TTR type token ratio
-def TTR(vocCount, numTokens):
-    ttr = vocCount / numTokens
-
+def TTR(vocCount, partTokens):
+    numTokens = len(partTokens)
+    ttr = vocCount * 1.0 / numTokens * 1.0
     return ttr
-
-
-# porz incrementali
-def incrTTR(tokensList):
-    mill = 1000
-    part = []
-    for mill in tokensList:
-        part = slice(mill)
-        print "Vocabolario:", part, vocabularyCount(tokensList[part]), "TTR:", TTR(tokensList[part], len(tokensList))
-        mill = mill + 1000
 
 
 # In input i due file
@@ -116,11 +106,11 @@ def main(file1, file2):
     print "RECENSIONI POSITIVE:\n Numero frasi:\t", numFrasi1, "\tNumero token:\t", numToken1,
     print "\nRECENSIONI NEGATIVE:\n Numero frasi:\t", numFrasi2, "\tNumero token:\t", numToken2, "\n"
     if (numFrasi1 > numFrasi2):
-        print "Il corpus recensioni positive presenta un numero maggiore di frasi\n"
+        print " Il corpus recensioni positive presenta un numero maggiore di frasi\n"
     if (numFrasi1 < numFrasi2):
-        print "Il corpus recensioni negative presenta un numero maggiore di frasi\n"
+        print " Il corpus recensioni negative presenta un numero maggiore di frasi\n"
     if (numFrasi1 == numFrasi2):
-        print "I due corpora presentano lo stesso numero di frasi\n"
+        print " I due corpora presentano lo stesso numero di frasi\n"
 
     # lunghezza media frasi
     lungFrasi1 = lungMediaFrasi(numFrasi1, numToken1)
@@ -132,27 +122,72 @@ def main(file1, file2):
     print "RECENSIONI POSITIVE:\n Lunghezza media frasi in token:\t", lungFrasi1, "\tLunghezza media token:", lungToken1
     print "RECENSIONI NEGATIVE:\n Lunghezza media frasi in token:\t", lungFrasi2, "\tLunghezza media token:", lungToken2, "\n"
     if (lungFrasi1 > lungFrasi2):
-        print "Il corpus recensioni positive presenta un maggior numero medio di token per frase"
+        print " Il corpus recensioni positive presenta un maggior numero medio di token per frase"
     if (lungFrasi1 < lungFrasi2):
-        print "Il corpus recensioni negative presenta un maggior numero medio di token per frase"
+        print " Il corpus recensioni negative presenta un maggior numero medio di token per frase"
     if (lungFrasi1 == lungFrasi2):
-        print "I corpora presentano lo stesso numero medio di token per frase"
+        print " I corpora presentano lo stesso numero medio di token per frase"
     if (lungToken1 > lungToken2):
-        print "Il corpus recensioni positive presenta un maggior numero medio di caratteri per token"
+        print " Il corpus recensioni positive presenta un maggior numero medio di caratteri per token"
     if (lungToken1 < lungToken2):
-        print "Il corpus recensioni negative presenta un maggior numero medio di caratteri per token"
+        print " Il corpus recensioni negative presenta un maggior numero medio di caratteri per token"
     if (lungToken1 == lungToken2):
-        print "I due corpora presentano lo stesso numero medio di caratteri per token"
+        print " I due corpora presentano lo stesso numero medio di caratteri per token"
 
-    # grandezza vocabolario
-    vocCount1 = vocabularyCount(tokensList1)
-    vocCount2 = vocabularyCount(tokensList2)
-    print "Vocabolario file 1:", vocCount1
-    print "Vocabolario file 2:", vocCount2
-    # Type Token Ratio per porzioni incrementali
-    print "\n\tVocabolario e TTR per porzioni incrementali:\nPOSITIVE:\n", incrTTR(tokensList1), "\n"
+    # grandezza vocabolario e TTR per porzioni incrementali di 1000 token
+    # parziali RECENSIONI POSITIVE
+    parz1 = tokensList1[0:1000]  # funzione che prende elem da 1 a 1000 della lista di token
+    parz2 = tokensList1[0:2000]
+    parz3 = tokensList1[0:3000]
+    parz4 = tokensList1[0:4000]
+    parz5 = tokensList1[0:5000]
+    # calcolo vocabolario parziali (positive)
+    vocCount1 = vocabularyCount(parz1)
+    vocCount2 = vocabularyCount(parz2)
+    vocCount3 = vocabularyCount(parz3)
+    vocCount4 = vocabularyCount(parz4)
+    vocCount5 = vocabularyCount(parz5)
+    # calcolo TTR parziali (positive)
+    TTR1 = TTR(vocCount1, parz1)
+    TTR2 = TTR(vocCount2, parz2)
+    TTR3 = TTR(vocCount3, parz3)
+    TTR4 = TTR(vocCount4, parz4)
+    TTR5 = TTR(vocCount5, parz5)
+
+    print "\nVOCABOLARIO E TTR PER PORZIONI INCREMENTALI DI TOKEN\n"
+    print " Recensioni positive"
+    print " - primi 1000 token \tvocabolario:", vocCount1, "\tTTR:", TTR1
+    print " - primi 2000 token \tvocabolario:", vocCount2, "\tTTR:", TTR2
+    print " - primi 3000 token \tvocabolario:", vocCount3, "\tTTR:", TTR3
+    print " - primi 4000 token \tvocabolario:", vocCount4, "\tTTR:", TTR4
+    print " - primi 5000 token \tvocabolario:", vocCount5, "\tTTR:", TTR5
+
+    # grandezza vocabolario e TTR per porzioni incrementali di 1000 token
+    # parziali RECENSIONI NEGATIVE
+    parz1 = tokensList2[0:1000]  # funzione che prende elem da 1 a 1000 della lista di token
+    parz2 = tokensList2[0:2000]
+    parz3 = tokensList2[0:3000]
+    parz4 = tokensList2[0:4000]
+    parz5 = tokensList2[0:5000]
+    # calcolo vocabolario parziali (negative)
+    vocCount1 = vocabularyCount(parz1)
+    vocCount2 = vocabularyCount(parz2)
+    vocCount3 = vocabularyCount(parz3)
+    vocCount4 = vocabularyCount(parz4)
+    vocCount5 = vocabularyCount(parz5)
+    # calcolo TTR parziali (negative)
+    TTR1 = TTR(vocCount1, parz1)
+    TTR2 = TTR(vocCount2, parz2)
+    TTR3 = TTR(vocCount3, parz3)
+    TTR4 = TTR(vocCount4, parz4)
+    TTR5 = TTR(vocCount5, parz5)
+
+    print "\n Recensioni negative"
+    print " - primi 1000 token \tvocabolario:", vocCount1, "\tTTR:", TTR1
+    print " - primi 2000 token \tvocabolario:", vocCount2, "\tTTR:", TTR2
+    print " - primi 3000 token \tvocabolario:", vocCount3, "\tTTR:", TTR3
+    print " - primi 4000 token \tvocabolario:", vocCount4, "\tTTR:", TTR4
+    print " - primi 5000 token \tvocabolario:", vocCount5, "\tTTR:", TTR5
 
 
 main(sys.argv[1], sys.argv[2])
-
-
