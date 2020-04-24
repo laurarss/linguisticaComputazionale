@@ -91,6 +91,24 @@ def classeFreq(tokensList):
     return v3, v6, v9
 
 
+# conta nomi, aggettivi e verbi nel corpus(con POS tag)
+def contaNomiAggVerbi(tokensAnalisis):
+    numNomi = 0
+    numAggettivi = 0
+    numVerbi = 0
+    for row in tokensAnalisis:
+        if row[1] == 'NN|NNP|NNS|NNPS':
+            numNomi += 1
+    return numNomi, numAggettivi, numVerbi
+
+
+# media
+def media(numElem, frasi):
+    media = numElem * 1.0 / frasi * 1.0
+
+    return media
+
+
 # In input i due file
 def main(file1, file2):
     # metodo open per aprire file di testo
@@ -112,6 +130,7 @@ def main(file1, file2):
     # creo lista di coppie coppie token-tag
     POS1 = bigramsPOS(tokensAnalisis1)
     POS2 = bigramsPOS(tokensAnalisis2)
+    print POS1
 
     # numero frasi(conta frasi da testo diviso in frasi)
     numFrasi1 = len(frasi1)
@@ -225,12 +244,14 @@ def main(file1, file2):
     freq2V3, freq2V6, freq2V9 = classeFreq(parz5_2)
     print "\nCLASSI DI FREQUENZA V3, V6 e V9"
     print "\nRecensioni positive:"
-    print "\nV3:\t", freq1V3, "\tV6:\t", freq1V6, "\tV9:", freq1V9
-    print "\nRecensioni negative:"
-    print "\nV3:\t", freq2V3, "\tV6:\t", freq2V6, "\tV9:", freq2V9
+    print "V3:\t", freq1V3, "\tV6:\t", freq1V6, "\tV9:\t", freq1V9
+    print "Recensioni negative:"
+    print "V3:\t", freq2V3, "\tV6:\t", freq2V6, "\tV9:\t", freq2V9
 
-
-# NUMERO MEDIO SOSTANTIVI, AVVERBI E VERBI IN UNA FRASE
+    # NUMERO MEDIO SOSTANTIVI, AVVERBI E VERBI PER FRASE
+    nomi1, aggettivi1, verbi1 = contaNomiAggVerbi(tokensAnalisis1)
+    print "\nNUMERO MEDIO SOSTANTIVI, AVVERBI E VERBI PER FRASE"
+    print "Nomi:", nomi1, "\taggettivi:", aggettivi1, "\tverbi:", verbi1
 
 
 main(sys.argv[1], sys.argv[2])
