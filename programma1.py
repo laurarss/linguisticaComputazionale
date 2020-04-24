@@ -42,7 +42,7 @@ def bigramsPOS(tokenAnalized):
 # calcola lunghezza media in token delle frasi (numero tokens/numero frasi)
 def lungMediaFrasi(numFrasi, numTokens):
     media = 0.0
-    media = numTokens*1.0 / numFrasi*1.0 #cast a float moltiplicando per 1.0
+    media = numTokens * 1.0 / numFrasi * 1.0  # cast a float moltiplicando per 1.0
 
     return media
 
@@ -68,19 +68,20 @@ def vocabularyCount(tokensList):
 
 # calcola TTR type token ratio
 def TTR(vocCount, partTokens):
-	numTokens = len(partTokens)
-	ttr = vocCount*1.0/numTokens*1.0
-	return ttr
+    numTokens = len(partTokens)
+    ttr = vocCount * 1.0 / numTokens * 1.0
+    return ttr
+
 
 # calcola classe di frequenza
 def classeFreq(tokensList):
     v3 = 0
     v6 = 0
     v9 = 0
-    freqToken = nltk.FreqDist(tokensList) #funzione nltk che calcola frequenza
+    freqToken = nltk.FreqDist(tokensList)  # funzione nltk che calcola frequenza
     vocabulary = set(freqToken)
     for token in vocabulary:
-        if freqToken[token] == 3: #controllo che freq elemento sia uguale a quello della classe considerata
+        if freqToken[token] == 3:  # controllo che freq elemento sia uguale a quello della classe considerata
             v3 += 1
         if freqToken[token] == 6:
             v6 += 1
@@ -153,7 +154,7 @@ def main(file1, file2):
 
     # grandezza vocabolario e TTR per porzioni incrementali di 1000 token
     # parziali RECENSIONI POSITIVE
-    parz1 = tokensList1[0:1000] # funzione che prende elem da 1 a 1000 della lista di token
+    parz1 = tokensList1[0:1000]  # funzione che prende elem da 1 a 1000 della lista di token
     parz2 = tokensList1[0:2000]
     parz3 = tokensList1[0:3000]
     parz4 = tokensList1[0:4000]
@@ -164,7 +165,7 @@ def main(file1, file2):
     vocCount3 = vocabularyCount(parz3)
     vocCount4 = vocabularyCount(parz4)
     vocCount5 = vocabularyCount(parz5)
-    #calcolo TTR parziali (positive)
+    # calcolo TTR parziali (positive)
     TTR1 = TTR(vocCount1, parz1)
     TTR2 = TTR(vocCount2, parz2)
     TTR3 = TTR(vocCount3, parz3)
@@ -181,7 +182,7 @@ def main(file1, file2):
 
     # grandezza vocabolario e TTR per porzioni incrementali di 1000 token
     # parziali RECENSIONI NEGATIVE
-    parz1 = tokensList2[0:1000] # funzione che prende elem da 1 a 1000 della lista di token
+    parz1 = tokensList2[0:1000]  # funzione che prende elem da 1 a 1000 della lista di token
     parz2 = tokensList2[0:2000]
     parz3 = tokensList2[0:3000]
     parz4 = tokensList2[0:4000]
@@ -192,7 +193,7 @@ def main(file1, file2):
     vocCount3 = vocabularyCount(parz3)
     vocCount4 = vocabularyCount(parz4)
     vocCount5 = vocabularyCount(parz5)
-    #calcolo TTR parziali (negative)
+    # calcolo TTR parziali (negative)
     TTR1 = TTR(vocCount1, parz1)
     TTR2 = TTR(vocCount2, parz2)
     TTR3 = TTR(vocCount3, parz3)
@@ -206,8 +207,14 @@ def main(file1, file2):
     print " - primi 4000 token \tvocabolario:", vocCount4, "\tTTR:", TTR4
     print " - primi 5000 token \tvocabolario:", vocCount5, "\tTTR:", TTR5
 
-    #CLASSI DI FRQUENZA V3, V6, V9
-
+    # CLASSI DI FRQUENZA V3, V6, V9
+    freq1V3, freq1V6, freq1V9 = classeFreq(tokensList1)
+    freq2V3, freq2V6, freq2V9 = classeFreq(tokensList2)
+    print "\nCLASSI DI FREQUENZA V3, V6 e V9"
+    print "\nRecensioni positive:"
+    print "\nV3:\t", freq1V3, "\nV6:\t", freq1V6, "\nV9:\t", freq1V9
+    print "\nRecensioni negative:"
+    print "\nV3:\t", freq2V3, "\nV6:\t", freq2V6, "\nV9:\t", freq2V9
 
 
 main(sys.argv[1], sys.argv[2])
