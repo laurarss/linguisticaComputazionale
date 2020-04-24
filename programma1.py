@@ -159,18 +159,24 @@ def main(file1, file2):
     parz3 = tokensList1[0:3000]
     parz4 = tokensList1[0:4000]
     parz5 = tokensList1[0:5000]
+
     # calcolo vocabolario parziali (positive)
     vocCount1 = vocabularyCount(parz1)
     vocCount2 = vocabularyCount(parz2)
     vocCount3 = vocabularyCount(parz3)
     vocCount4 = vocabularyCount(parz4)
     vocCount5 = vocabularyCount(parz5)
+    # vocabolario intero corpus
+    vocabulary1 = vocabularyCount(tokensList1)
+
     # calcolo TTR parziali (positive)
     TTR1 = TTR(vocCount1, parz1)
     TTR2 = TTR(vocCount2, parz2)
     TTR3 = TTR(vocCount3, parz3)
     TTR4 = TTR(vocCount4, parz4)
     TTR5 = TTR(vocCount5, parz5)
+    # TTR intero corpus
+    TTRcorpus1 = TTR(vocabulary1, tokensList1)
 
     print "\nVOCABOLARIO E TTR PER PORZIONI INCREMENTALI DI TOKEN\n"
     print " Recensioni positive"
@@ -179,42 +185,52 @@ def main(file1, file2):
     print " - primi 3000 token \tvocabolario:", vocCount3, "\tTTR:", TTR3
     print " - primi 4000 token \tvocabolario:", vocCount4, "\tTTR:", TTR4
     print " - primi 5000 token \tvocabolario:", vocCount5, "\tTTR:", TTR5
+    print "Intero Corpus \tvocabolario:", vocabulary1, "\tTTR:", TTRcorpus1
 
     # grandezza vocabolario e TTR per porzioni incrementali di 1000 token
     # parziali RECENSIONI NEGATIVE
-    parz1 = tokensList2[0:1000]  # funzione che prende elem da 1 a 1000 della lista di token
-    parz2 = tokensList2[0:2000]
-    parz3 = tokensList2[0:3000]
-    parz4 = tokensList2[0:4000]
-    parz5 = tokensList2[0:5000]
+    parz1_2 = tokensList2[0:1000]  # funzione che prende elem da 1 a 1000 della lista di token
+    parz2_2 = tokensList2[0:2000]
+    parz3_2 = tokensList2[0:3000]
+    parz4_2 = tokensList2[0:4000]
+    parz5_2 = tokensList2[0:5000]
     # calcolo vocabolario parziali (negative)
-    vocCount1 = vocabularyCount(parz1)
-    vocCount2 = vocabularyCount(parz2)
-    vocCount3 = vocabularyCount(parz3)
-    vocCount4 = vocabularyCount(parz4)
-    vocCount5 = vocabularyCount(parz5)
+    vocCount1_2 = vocabularyCount(parz1_2)
+    vocCount2_2 = vocabularyCount(parz2_2)
+    vocCount3_2 = vocabularyCount(parz3_2)
+    vocCount4_2 = vocabularyCount(parz4_2)
+    vocCount5_2 = vocabularyCount(parz5_2)
+    # vocabolario intero corpus
+    vocabulary2 = vocabularyCount(tokensList2)
+
     # calcolo TTR parziali (negative)
-    TTR1 = TTR(vocCount1, parz1)
-    TTR2 = TTR(vocCount2, parz2)
-    TTR3 = TTR(vocCount3, parz3)
-    TTR4 = TTR(vocCount4, parz4)
-    TTR5 = TTR(vocCount5, parz5)
+    TTR1_2 = TTR(vocCount1_2, parz1_2)
+    TTR2_2 = TTR(vocCount2_2, parz2_2)
+    TTR3_2 = TTR(vocCount3_2, parz3_2)
+    TTR4_2 = TTR(vocCount4_2, parz4_2)
+    TTR5_2 = TTR(vocCount5_2, parz5_2)
+    # TTR intero corpus
+    TTRcorpus2 = TTR(vocabulary2, tokensList2)
 
     print "\n Recensioni negative"
-    print " - primi 1000 token \tvocabolario:", vocCount1, "\tTTR:", TTR1
-    print " - primi 2000 token \tvocabolario:", vocCount2, "\tTTR:", TTR2
-    print " - primi 3000 token \tvocabolario:", vocCount3, "\tTTR:", TTR3
-    print " - primi 4000 token \tvocabolario:", vocCount4, "\tTTR:", TTR4
-    print " - primi 5000 token \tvocabolario:", vocCount5, "\tTTR:", TTR5
+    print " - primi 1000 token \tvocabolario:", vocCount1_2, "\tTTR:", TTR1_2
+    print " - primi 2000 token \tvocabolario:", vocCount2_2, "\tTTR:", TTR2_2
+    print " - primi 3000 token \tvocabolario:", vocCount3_2, "\tTTR:", TTR3_2
+    print " - primi 4000 token \tvocabolario:", vocCount4_2, "\tTTR:", TTR4_2
+    print " - primi 5000 token \tvocabolario:", vocCount5_2, "\tTTR:", TTR5_2
+    print "Intero Corpus \tvocabolario:", vocabulary2, "\tTTR:", TTRcorpus2
 
-    # CLASSI DI FRQUENZA V3, V6, V9
-    freq1V3, freq1V6, freq1V9 = classeFreq(tokensList1)
-    freq2V3, freq2V6, freq2V9 = classeFreq(tokensList2)
+    # CLASSI DI FREQUENZA V3, V6, V9 sui primi 5000 token
+    freq1V3, freq1V6, freq1V9 = classeFreq(parz5)
+    freq2V3, freq2V6, freq2V9 = classeFreq(parz5_2)
     print "\nCLASSI DI FREQUENZA V3, V6 e V9"
     print "\nRecensioni positive:"
-    print "\nV3:\t", freq1V3, "\nV6:\t", freq1V6, "\nV9:\t", freq1V9
+    print "\nV3:\t", freq1V3, "\tV6:\t", freq1V6, "\tV9:", freq1V9
     print "\nRecensioni negative:"
-    print "\nV3:\t", freq2V3, "\nV6:\t", freq2V6, "\nV9:\t", freq2V9
+    print "\nV3:\t", freq2V3, "\tV6:\t", freq2V6, "\tV9:", freq2V9
+
+
+# NUMERO MEDIO SOSTANTIVI, AVVERBI E VERBI IN UNA FRASE
 
 
 main(sys.argv[1], sys.argv[2])
