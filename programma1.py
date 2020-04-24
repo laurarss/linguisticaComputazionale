@@ -8,6 +8,7 @@
 import sys
 import codecs  # classe che contiene il metodo open()
 import nltk  # per metodo tokenize
+import re  # per exp regolari
 
 
 # tokenizza frasi e fa analisi morfosintattica(POS tagging)
@@ -30,13 +31,13 @@ def tokenizePOS(frasi):
 
 
 # estraggo bigrammi POS dal testo analizzato
-def bigramsPOS(tokenAnalized):
-    bigramsPOS = []
-    for bigram in tokenAnalized:
-        # append alla lista bigrammi POS
-        bigramsPOS.append(bigram[1])
-
-    return bigramsPOS
+# def bigramsPOS(tokenAnalized):
+#     bigramsPOS = []
+#     for bigram in tokenAnalized:
+#         # append alla lista bigrammi POS
+#         bigramsPOS.append(bigram[1])
+#
+#     return bigramsPOS
 
 
 # calcola lunghezza media in token delle frasi (numero tokens/numero frasi)
@@ -93,18 +94,31 @@ def classeFreq(tokensList):
 
 # conta nomi, aggettivi e verbi nel corpus(con POS tag)
 def contaNomiAggVerbi(tokensAnalisis):
+    # conteggi
     numNomi = 0
     numAggettivi = 0
     numVerbi = 0
+    # liste POS tags, tratte da https://www.ling.upenn.edu/courses/Fall_2003/ling001/penn_treebank_pos.html
+    tagNomi = ["NN", "NNS", "NNP", "NNPS"]
+    tagAggettivi = ["JJ", "JJR", "JJS"]
+    #tagAvverbi = ["RB", "RBR", "RBS"]
+    tagVerbi = ["VB", "VBD", "VBG", "VBN", "VBP", "VBZ"]
+
+    # per ogni row, formata dai due elementi token-tag, guardo se il secondo(il tag) è uguale a uno di quelli delle liste che mi interessano
     for row in tokensAnalisis:
-        if row[1] == 'NN|NNP|NNS|NNPS':
+        if row[1] in tagNomi:
             numNomi += 1
+        if row[1] in tagAggettivi:
+            numAggettivi += 1
+        if row[1] in tagVerbi:
+            numVerbi += 1
+
     return numNomi, numAggettivi, numVerbi
 
 
-# media
+# la funzione calcola la media tra un tot di elementi(nomi/agg/verbi) e il numero di frasi nel corpus
 def media(numElem, frasi):
-    media = numElem * 1.0 / frasi * 1.0
+    media = numElem * 1.0 / len(frasi) * 1.0
 
     return media
 
@@ -128,9 +142,8 @@ def main(file1, file2):
     tokensList1, tokensAnalisis1 = tokenizePOS(frasi1)
     tokensList2, tokensAnalisis2 = tokenizePOS(frasi2)
     # creo lista di coppie coppie token-tag
-    POS1 = bigramsPOS(tokensAnalisis1)
-    POS2 = bigramsPOS(tokensAnalisis2)
-    print POS1
+    # POS1 = bigramsPOS(tokensAnalisis1)
+    # POS2 = bigramsPOS(tokensAnalisis2)
 
     # numero frasi(conta frasi da testo diviso in frasi)
     numFrasi1 = len(frasi1)
@@ -138,7 +151,7 @@ def main(file1, file2):
     # numero token(conta token da testo diviso in frasi)
     numToken1 = len(tokensList1)
     numToken2 = len(tokensList2)
-    print "\nPROVA:\n"
+
     print "\nNUMERO FRASI E TOKEN:\n"
     print "RECENSIONI POSITIVE:\n Numero frasi:\t", numFrasi1, "\tNumero token:\t", numToken1,
     print "\nRECENSIONI NEGATIVE:\n Numero frasi:\t", numFrasi2, "\tNumero token:\t", numToken2, "\n"
@@ -198,21 +211,22 @@ def main(file1, file2):
     TTRcorpus1 = TTR(vocabulary1, tokensList1)
 
     print "\nVOCABOLARIO E TTR PER PORZIONI INCREMENTALI DI TOKEN\n"
-    print " Recensioni positive"
+    print "RECENSIONI POSITIVE:"
     print " - primi 1000 token \tvocabolario:", vocCount1, "\tTTR:", TTR1
     print " - primi 2000 token \tvocabolario:", vocCount2, "\tTTR:", TTR2
     print " - primi 3000 token \tvocabolario:", vocCount3, "\tTTR:", TTR3
     print " - primi 4000 token \tvocabolario:", vocCount4, "\tTTR:", TTR4
     print " - primi 5000 token \tvocabolario:", vocCount5, "\tTTR:", TTR5
-    print "Intero Corpus \tvocabolario:", vocabulary1, "\tTTR:", TTRcorpus1
+    print " Intero Corpus \tvocabolario:", vocabulary1, "\tTTR:", TTRcorpus1
 
     # grandezza vocabolario e TTR per porzioni incrementali di 1000 token
     # parziali RECENSIONI NEGATIVE
-    parz1_2 = tokensList2[0:1000]  # funzione che prende elem da 1 a 1000 della lista di token
+    parz1_2 = tokensList2[0:1000] # funzione che prende elem da 1 a 1000 della lista di token
     parz2_2 = tokensList2[0:2000]
     parz3_2 = tokensList2[0:3000]
     parz4_2 = tokensList2[0:4000]
     parz5_2 = tokensList2[0:5000]
+
     # calcolo vocabolario parziali (negative)
     vocCount1_2 = vocabularyCount(parz1_2)
     vocCount2_2 = vocabularyCount(parz2_2)
@@ -231,27 +245,40 @@ def main(file1, file2):
     # TTR intero corpus
     TTRcorpus2 = TTR(vocabulary2, tokensList2)
 
-    print "\n Recensioni negative"
-    print " - primi 1000 token \tvocabolario:", vocCount1_2, "\tTTR:", TTR1_2
+    print "\nRECENSIONI NEGATIVE:\n- primi 1000 token \tvocabolario:", vocCount1_2, "\tTTR:", TTR1_2
     print " - primi 2000 token \tvocabolario:", vocCount2_2, "\tTTR:", TTR2_2
     print " - primi 3000 token \tvocabolario:", vocCount3_2, "\tTTR:", TTR3_2
     print " - primi 4000 token \tvocabolario:", vocCount4_2, "\tTTR:", TTR4_2
     print " - primi 5000 token \tvocabolario:", vocCount5_2, "\tTTR:", TTR5_2
-    print "Intero Corpus \tvocabolario:", vocabulary2, "\tTTR:", TTRcorpus2
+    print " Intero Corpus \tvocabolario:", vocabulary2, "\tTTR:", TTRcorpus2
 
     # CLASSI DI FREQUENZA V3, V6, V9 sui primi 5000 token
     freq1V3, freq1V6, freq1V9 = classeFreq(parz5)
     freq2V3, freq2V6, freq2V9 = classeFreq(parz5_2)
     print "\nCLASSI DI FREQUENZA V3, V6 e V9"
-    print "\nRecensioni positive:"
-    print "V3:\t", freq1V3, "\tV6:\t", freq1V6, "\tV9:\t", freq1V9
-    print "Recensioni negative:"
-    print "V3:\t", freq2V3, "\tV6:\t", freq2V6, "\tV9:\t", freq2V9
+    print "\nRECENSIONI POSITIVE:"
+    print " V3:\t", freq1V3, "\tV6:\t", freq1V6, "\tV9:\t", freq1V9
+    print "RECENSIONI NEGATIVE:"
+    print " V3:\t", freq2V3, "\tV6:\t", freq2V6, "\tV9:\t", freq2V9
 
     # NUMERO MEDIO SOSTANTIVI, AVVERBI E VERBI PER FRASE
+    # totale nomi, verbi e aggettivi nel corpus
     nomi1, aggettivi1, verbi1 = contaNomiAggVerbi(tokensAnalisis1)
+    nomi2, aggettivi2, verbi2 = contaNomiAggVerbi(tokensAnalisis2)
+    # calcolo media nomi per frase
+    #recensioni positive
+    mediaNomi1 = media(nomi1, frasi1)
+    mediaAggettivi1 = media(aggettivi1, frasi1)
+    mediaVerbi1 = media(verbi1, frasi1)
+    # recensioni negative
+    mediaNomi2 = media(nomi2, frasi2)
+    mediaAggettivi2 = media(aggettivi2, frasi2)
+    mediaVerbi2 = media(verbi2, frasi2)
     print "\nNUMERO MEDIO SOSTANTIVI, AVVERBI E VERBI PER FRASE"
-    print "Nomi:", nomi1, "\taggettivi:", aggettivi1, "\tverbi:", verbi1
+    print "\nRECENSIONI POSITIVE:"
+    print " Media..\tnomi:", mediaNomi1, "\taggettivi:", mediaAggettivi1, "\tverbi:", mediaVerbi1
+    print "\nRECENSIONI NEGATIVE:"
+    print " Media..\tnomi:", mediaNomi2, "\taggettivi:", mediaAggettivi2, "\tverbi:", mediaVerbi2
 
 
 main(sys.argv[1], sys.argv[2])
