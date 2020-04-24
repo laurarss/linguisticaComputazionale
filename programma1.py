@@ -92,7 +92,7 @@ def classeFreq(tokensList):
     return v3, v6, v9
 
 
-# conta nomi, aggettivi e verbi nel corpus(con POS tag)
+# conta nomi, aggettivi e verbi nel corpus già POS taggato
 def contaNomiAggVerbi(tokensAnalisis):
     # conteggi
     numNomi = 0
@@ -101,7 +101,6 @@ def contaNomiAggVerbi(tokensAnalisis):
     # liste POS tags, tratte da https://www.ling.upenn.edu/courses/Fall_2003/ling001/penn_treebank_pos.html
     tagNomi = ["NN", "NNS", "NNP", "NNPS"]
     tagAggettivi = ["JJ", "JJR", "JJS"]
-    #tagAvverbi = ["RB", "RBR", "RBS"]
     tagVerbi = ["VB", "VBD", "VBG", "VBN", "VBP", "VBZ"]
 
     # per ogni row, formata dai due elementi token-tag, guardo se il secondo(il tag) è uguale a uno di quelli delle liste che mi interessano
@@ -121,6 +120,29 @@ def media(numElem, frasi):
     media = numElem * 1.0 / len(frasi) * 1.0
 
     return media
+
+
+# conta occorrenze di avverbi e punteggiatura nel testo
+def contaAvverbiPunteggiatura(tokensAnalisis):
+    numAvverbi = 0
+    numPunct = 0
+    tagAvverbi = ["RB", "RBR", "RBS"]
+    tagPunct = [",", "."]
+    for row in tokensAnalisis:
+        if row[1] in tagAvverbi:
+            numAvverbi += 1
+        if row[1] in tagPunct:
+            numPunct += 1
+
+    return numAvverbi, numPunct
+
+
+# calcola densità lessicale con in input le occorrenze di nomi/aggettivi/verbi/avverbi
+def densitaLessicale(nomi, aggettivi, verbi, avverbi, punteggiatura, numTokens):
+    densLess = 0
+    densLess = (nomi + verbi + aggettivi + verbi) * 1.0 / (numTokens - punteggiatura) * 1.0
+
+    return densLess
 
 
 # In input i due file
@@ -221,7 +243,7 @@ def main(file1, file2):
 
     # grandezza vocabolario e TTR per porzioni incrementali di 1000 token
     # parziali RECENSIONI NEGATIVE
-    parz1_2 = tokensList2[0:1000] # funzione che prende elem da 1 a 1000 della lista di token
+    parz1_2 = tokensList2[0:1000]  # funzione che prende elem da 1 a 1000 della lista di token
     parz2_2 = tokensList2[0:2000]
     parz3_2 = tokensList2[0:3000]
     parz4_2 = tokensList2[0:4000]
@@ -262,11 +284,11 @@ def main(file1, file2):
     print " V3:\t", freq2V3, "\tV6:\t", freq2V6, "\tV9:\t", freq2V9
 
     # NUMERO MEDIO SOSTANTIVI, AVVERBI E VERBI PER FRASE
-    # totale nomi, verbi e aggettivi nel corpus
+    # totale nomi, verbi e aggettivi nel corpus di ogni file
     nomi1, aggettivi1, verbi1 = contaNomiAggVerbi(tokensAnalisis1)
     nomi2, aggettivi2, verbi2 = contaNomiAggVerbi(tokensAnalisis2)
     # calcolo media nomi per frase
-    #recensioni positive
+    # recensioni positive
     mediaNomi1 = media(nomi1, frasi1)
     mediaAggettivi1 = media(aggettivi1, frasi1)
     mediaVerbi1 = media(verbi1, frasi1)
@@ -275,10 +297,21 @@ def main(file1, file2):
     mediaAggettivi2 = media(aggettivi2, frasi2)
     mediaVerbi2 = media(verbi2, frasi2)
     print "\nNUMERO MEDIO SOSTANTIVI, AVVERBI E VERBI PER FRASE"
-    print "\nRECENSIONI POSITIVE:"
-    print " Media..\tnomi:", mediaNomi1, "\taggettivi:", mediaAggettivi1, "\tverbi:", mediaVerbi1
-    print "\nRECENSIONI NEGATIVE:"
-    print " Media..\tnomi:", mediaNomi2, "\taggettivi:", mediaAggettivi2, "\tverbi:", mediaVerbi2
+    print "\nRECENSIONI POSITIVE: Media..\tnomi:", mediaNomi1, "\taggettivi:", mediaAggettivi1, "\tverbi:", mediaVerbi1
+    print "\nRECENSIONI NEGATIVE: Media..\tnomi:", mediaNomi2, "\taggettivi:", mediaAggettivi2, "\tverbi:", mediaVerbi2
 
+    # DENSITA' LESSICALE
+    # calcolo occorrenze avverbi e punteggiatura nel testo dei ogni file
+    avverbi1, punct1 = contaAvverbiPunteggiatura(tokensAnalisis1)
+    avverbi2, punct2 = contaAvverbiPunteggiatura(tokensAnalisis2)
+
+    # calcolo densità lessicale per ogni file
+    densLess1 = densitaLessicale(nomi1, aggettivi1, verbi1, avverbi1, punct1, numToken1)
+    densLess2 = densitaLessicale(nomi2, aggettivi2, verbi2, avverbi2, punct2, numToken2)
+
+
+    print"\nDENSITA' LESSICALE"
+    print"\nRECENSIONI POSITIVE:", densLess1
+    print"\nRECENSIONI POSITIVE:", densLess2
 
 main(sys.argv[1], sys.argv[2])
