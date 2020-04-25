@@ -8,13 +8,12 @@
 import sys
 import codecs  # classe che contiene il metodo open()
 import nltk  # per metodo tokenize
-import re  # per exp regolari
 
 
 # tokenizza frasi e fa analisi morfosintattica(POS tagging)
 def tokenizePOS(frasi):
-    tokensList = []
-    tokensAnalisis = []
+    tokensList = tokenPOS = []
+    tokensPOS = []
     for frase in frasi:
         frase = frase.encode('utf-8')
         # metodo nltk per dividere in parole(token) il testo del file frase per frase
@@ -23,21 +22,11 @@ def tokenizePOS(frasi):
         tokensList = tokensList + tokens
 
         # metodo nltk per POS tagging su frasi tokenizzate
-        tokensPOS = nltk.pos_tag(tokens)
+        tokenPOS = nltk.pos_tag(tokens)
         # costruisco analisi per token
-        tokensAnalisis = tokensAnalisis + tokensPOS
+        tokensPOS = tokensPOS + tokenPOS
 
-    return tokensList, tokensAnalisis
-
-
-# estraggo bigrammi POS dal testo analizzato
-# def bigramsPOS(tokenAnalized):
-#     bigramsPOS = []
-#     for bigram in tokenAnalized:
-#         # append alla lista bigrammi POS
-#         bigramsPOS.append(bigram[1])
-#
-#     return bigramsPOS
+    return tokensList, tokensPOS
 
 
 # calcola lunghezza media in token delle frasi (numero tokens/numero frasi)
@@ -93,7 +82,7 @@ def classeFreq(tokensList):
 
 
 # conta nomi, aggettivi e verbi nel corpus già POS taggato
-def contaNomiAggVerbi(tokensAnalisis):
+def contaNomiAggVerbi(tokensPOS):
     # conteggi
     numNomi = 0
     numAggettivi = 0
@@ -104,7 +93,7 @@ def contaNomiAggVerbi(tokensAnalisis):
     tagVerbi = ["VB", "VBD", "VBG", "VBN", "VBP", "VBZ"]
 
     # per ogni row, formata dai due elementi token-tag, guardo se il secondo(il tag) è uguale a uno di quelli delle liste che mi interessano
-    for row in tokensAnalisis:
+    for row in tokensPOS:
         if row[1] in tagNomi:
             numNomi += 1
         if row[1] in tagAggettivi:
@@ -123,12 +112,12 @@ def media(numElem, frasi):
 
 
 # conta occorrenze di avverbi e punteggiatura nel testo
-def contaAvverbiPunteggiatura(tokensAnalisis):
+def contaAvverbiPunteggiatura(tokensPOS):
     numAvverbi = 0
     numPunct = 0
     tagAvverbi = ["RB", "RBR", "RBS"]
     tagPunct = [",", "."]
-    for row in tokensAnalisis:
+    for row in tokensPOS:
         if row[1] in tagAvverbi:
             numAvverbi += 1
         if row[1] in tagPunct:
@@ -161,11 +150,8 @@ def main(file1, file2):
     frasi2 = sent_tokenizer.tokenize(raw2)
 
     # tokenizzo le frasi e POS tagging
-    tokensList1, tokensAnalisis1 = tokenizePOS(frasi1)
-    tokensList2, tokensAnalisis2 = tokenizePOS(frasi2)
-    # creo lista di coppie coppie token-tag
-    # POS1 = bigramsPOS(tokensAnalisis1)
-    # POS2 = bigramsPOS(tokensAnalisis2)
+    tokensList1, tokensPOS1 = tokenizePOS(frasi1)
+    tokensList2, tokensPOS2 = tokenizePOS(frasi2)
 
     # numero frasi(conta frasi da testo diviso in frasi)
     numFrasi1 = len(frasi1)
@@ -285,8 +271,8 @@ def main(file1, file2):
 
     # NUMERO MEDIO SOSTANTIVI, AVVERBI E VERBI PER FRASE
     # totale nomi, verbi e aggettivi nel corpus di ogni file
-    nomi1, aggettivi1, verbi1 = contaNomiAggVerbi(tokensAnalisis1)
-    nomi2, aggettivi2, verbi2 = contaNomiAggVerbi(tokensAnalisis2)
+    nomi1, aggettivi1, verbi1 = contaNomiAggVerbi(tokensPOS1)
+    nomi2, aggettivi2, verbi2 = contaNomiAggVerbi(tokensPOS2)
     # calcolo media nomi per frase
     # recensioni positive
     mediaNomi1 = media(nomi1, frasi1)
@@ -302,8 +288,8 @@ def main(file1, file2):
 
     # DENSITA' LESSICALE
     # calcolo occorrenze avverbi e punteggiatura nel testo dei ogni file
-    avverbi1, punct1 = contaAvverbiPunteggiatura(tokensAnalisis1)
-    avverbi2, punct2 = contaAvverbiPunteggiatura(tokensAnalisis2)
+    avverbi1, punct1 = contaAvverbiPunteggiatura(tokensPOS1)
+    avverbi2, punct2 = contaAvverbiPunteggiatura(tokensPOS2)
 
     # calcolo densità lessicale per ogni file
     densLess1 = densitaLessicale(nomi1, aggettivi1, verbi1, avverbi1, punct1, numToken1)
@@ -312,6 +298,12 @@ def main(file1, file2):
 
     print"\nDENSITA' LESSICALE"
     print"\nRECENSIONI POSITIVE:", densLess1
-    print"\nRECENSIONI POSITIVE:", densLess2
+    print"\nRECENSIONI NEGATIVE:", densLess2
+    if (densLess1 > densLess2):
+		print "\nIl corpus recensioni positive ha una densità lessicale maggiore"
+    if (densLess1 < densLess2):
+		print "\nIl corpus recensioni negative ha una densità lessicale maggiore"
+    if (densLess1 == densLess2):
+		print "\nI due corpus hanno la stessa densità lessicale"
 
 main(sys.argv[1], sys.argv[2])
