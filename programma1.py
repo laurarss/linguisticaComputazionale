@@ -91,14 +91,13 @@ def contaNomiAggVerbi(tokensPOS):
     tagNomi = ["NN", "NNS", "NNP", "NNPS"]
     tagAggettivi = ["JJ", "JJR", "JJS"]
     tagVerbi = ["VB", "VBD", "VBG", "VBN", "VBP", "VBZ"]
-
-    # per ogni row, formata dai due elementi token-tag, guardo se il secondo(il tag) è uguale a uno di quelli delle liste che mi interessano
-    for row in tokensPOS:
-        if row[1] in tagNomi:
+    # per ogni elemento, formato dai due componenti token-tag, guardo se il secondo(il tag) è uguale a uno di quelli delle liste che mi interessano
+    for elem in tokensPOS:
+        if elem[1] in tagNomi:
             numNomi += 1
-        if row[1] in tagAggettivi:
+        if elem[1] in tagAggettivi:
             numAggettivi += 1
-        if row[1] in tagVerbi:
+        if elem[1] in tagVerbi:
             numVerbi += 1
 
     return numNomi, numAggettivi, numVerbi
@@ -139,13 +138,13 @@ def main(file1, file2):
     # metodo open per aprire file di testo
     fileInput1 = codecs.open(file1, "r", "utf-8")
     fileInput2 = codecs.open(file2, "r", "utf-8")
-    # metodo read per leggere i file e assegnarli alla var string raw
+    # metodo read per leggere i file e assegnarli alla variabile "raw" di tipo string
     raw1 = fileInput1.read()
     raw2 = fileInput2.read()
 
     # modulo statistico nltk per frasi
     sent_tokenizer = nltk.data.load('tokenizers/punkt/english.pickle')
-    # funzione nltk che divide il testo in frasi
+    # funzione nltk che divide il testo dei due corpora in frasi
     frasi1 = sent_tokenizer.tokenize(raw1)
     frasi2 = sent_tokenizer.tokenize(raw2)
 
@@ -294,7 +293,6 @@ def main(file1, file2):
     # calcolo densità lessicale per ogni file
     densLess1 = densitaLessicale(nomi1, aggettivi1, verbi1, avverbi1, punct1, numToken1)
     densLess2 = densitaLessicale(nomi2, aggettivi2, verbi2, avverbi2, punct2, numToken2)
-
 
     print"\nDENSITA' LESSICALE"
     print"\nRECENSIONI POSITIVE:", densLess1
