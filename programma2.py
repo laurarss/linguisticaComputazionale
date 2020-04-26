@@ -109,6 +109,19 @@ def elem10PiuFreqDecresc(elemList):
     return most10Freq
 
 
+# costruisco lista bigrammi (di tag) POS
+def bigrPOS(tokensPOS):
+    # creo lista bigrammi di POS
+    listaBigrammi = nltk.bigrams(tokensPOS)
+    # creo nuova lista bigrammi con i tag POS
+    listaBigrNew = []
+    for ((tok1, tag1), (tok2, tag2)) in listaBigrammi:
+        bigramma = (tag1, tag2)
+        listaBigrNew.append(bigramma)
+
+    return listaBigrNew
+
+
 def main(file1, file2):
     # metodo open per aprire file di testo
     fileInput1 = codecs.open(file1, "r", "utf-8")
@@ -189,9 +202,24 @@ def main(file1, file2):
     print "\n10 PoS più frequenti in ordine di frequenza decrescente"
     print "\nRECENSIONI POSITIVE:\n",
     for elem in POSfreq1:
-        print elem[0],"\t", elem[1]
+        print elem[0], "\t", elem[1]
     print "\nRECENSIONI NEGATIVE:"
     for elem in POSfreq2:
-		print elem[0],"\t", elem[1]
+        print elem[0], "\t", elem[1]
+
+    # 10 bigrammi di POS più frequenti
+    #costruisco lista bigrammi POS
+    listaBigrPOS1 = bigrPOS(tokensPOS1)
+    listaBigrPOS2 = bigrPOS(tokensPOS2)
+    # prendo i primi 10 in ordine decrescente
+    decrBigrPOS1 = elem10PiuFreqDecresc(listaBigrPOS1)
+    decrBigrPOS2 = elem10PiuFreqDecresc(listaBigrPOS2)
+    print "\n10 bigrammi di PoS più frequenti in ordine di frequenza decrescente"
+    print "\nRECENSIONI POSITIVE:\n",
+    for elem in decrBigrPOS1:
+        print elem[0], "\t", elem[1]
+    print "\nRECENSIONI NEGATIVE:"
+    for elem in decrBigrPOS2:
+        print elem[0], "\t", elem[1]
 
 main(sys.argv[1], sys.argv[2])
