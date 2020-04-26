@@ -122,6 +122,19 @@ def bigrPOS(tokensPOS):
     return listaBigrNew
 
 
+# costruisco lista trigrammi (di tag) POS
+def trigrPOS(tokensPOS):
+    # creo lista trigrammi di POS
+    listaTrigrammi = nltk.trigrams(tokensPOS)
+    # creo nuova lista bigrammi con i tag POS
+    listaTrigrNew = []
+    for ((tok1, tag1), (tok2, tag2),(tok3, tag3)) in listaTrigrammi:
+        trigramma = (tag1, tag2, tag3)
+        listaTrigrNew.append(trigramma)
+
+    return listaTrigrNew
+
+
 def main(file1, file2):
     # metodo open per aprire file di testo
     fileInput1 = codecs.open(file1, "r", "utf-8")
@@ -186,7 +199,7 @@ def main(file1, file2):
     # prendo solo i primi 20 bigrammi
     lista20Bigr1 = elem20PiuFreqDecresc(listaBigr1)
     lista20Bigr2 = elem20PiuFreqDecresc(listaBigr2)
-    print "\n20 bigrammi più frequenti in ordine di frequenza decrescente"
+    print "\n20 bigrammi di token più frequenti in ordine di frequenza decrescente"
     print "\nRECENSIONI POSITIVE:\n",
     for bigramma in lista20Bigr1:
         print bigramma[0], bigramma[1]
@@ -207,7 +220,7 @@ def main(file1, file2):
     for elem in POSfreq2:
         print elem[0], "\t", elem[1]
 
-    # 10 bigrammi di POS più frequenti
+    # 10 BIGRAMMI di POS più frequenti
     #costruisco lista bigrammi POS
     listaBigrPOS1 = bigrPOS(tokensPOS1)
     listaBigrPOS2 = bigrPOS(tokensPOS2)
@@ -220,6 +233,21 @@ def main(file1, file2):
         print elem[0], "\t", elem[1]
     print "\nRECENSIONI NEGATIVE:"
     for elem in decrBigrPOS2:
+        print elem[0], "\t", elem[1]
+
+    # 10 TRIGRAMMI di PoS più frequenti
+    #costruisco lista trigrammi POS
+    listaTrigrPOS1 = trigrPOS(tokensPOS1)
+    listaTrigrPOS2 = trigrPOS(tokensPOS2)
+    # prendo i primi 10 in ordine decrescente
+    decrTrigrPOS1 = elem10PiuFreqDecresc(listaTrigrPOS1)
+    decrTrigrPOS2 = elem10PiuFreqDecresc(listaTrigrPOS2)
+    print "\n10 trigrammi di PoS più frequenti in ordine di frequenza decrescente"
+    print "\nRECENSIONI POSITIVE:\n",
+    for elem in decrTrigrPOS1:
+        print elem[0], "\t", elem[1]
+    print "\nRECENSIONI NEGATIVE:"
+    for elem in decrTrigrPOS2:
         print elem[0], "\t", elem[1]
 
 main(sys.argv[1], sys.argv[2])
