@@ -42,14 +42,14 @@ def tokNoPunct(tokensList):
     return tokListNoPunct
 
 
-# calcola i 20 token più frequenti(punteggiatura esclusa)
-def tok20PiuFreq(tokList):
-    # calcolo frequenza di ogni token
-    tokFreq = collections.Counter(tokList)
-    # restituisco primi 20 token in ord decrescente
-    tokMostFreq = tokFreq.most_common(20)
+# calcola i 20 elementi più frequenti e li ordina in maniera descrescente rispetto alla frequenza
+def elem20PiuFreqDecresc(elemList):
+    # calcolo frequenza di ogni elemento nella lista
+    freq = collections.Counter(elemList)
+    # restituisco primi 20 elem in ordine decrescente
+    most20Freq = freq.most_common(20)
 
-    return tokMostFreq
+    return most20Freq
 
 
 # compone liste di sostantivi e aggettivi più frequenti
@@ -72,7 +72,7 @@ def mostFreqNomiAgg(tokensPOS):
     return mostFreqNomi, mostFreqAgg
 
 
-# toglie dalla lista dei POS punteggiatura, congiunzioni e articoli
+# toglie dalla lista dei POS punteggiatura, congiunzioni e articoli e restituisce sifatta lista bigrammi
 def noPuntArtCong(tokensPOS):
     # creo lista bigrammi di POS
     listaBigrammi = nltk.bigrams(tokensPOS)
@@ -83,10 +83,30 @@ def noPuntArtCong(tokensPOS):
     for ((tok1, tag1), (tok2, tag2)) in listaBigrammi:
         if tag1 not in listaTagDaEscludere:
             if tag2 not in listaTagDaEscludere:
-                bigramma = (tok1,tok2)
+                bigramma = (tok1, tok2)
                 listaBigrNew.append(bigramma)
 
     return listaBigrNew
+
+
+# costruisco lista solo di tag POS
+def listaTagPOS(tokensPOS):
+    listaTag = []
+
+    for (tok, tag) in tokensPOS:
+        listaTag.append(tag)
+
+    return listaTag
+
+
+# calcola i 10 elementi più frequenti e li ordina in maniera descrescente rispetto alla frequenza
+def elem10PiuFreqDecresc(elemList):
+    # calcolo frequenza di ogni elemento nella lista
+    freq = collections.Counter(elemList)
+    # restituisco primi 10 elem in ordine decrescente
+    most10Freq = freq.most_common(10)
+
+    return most10Freq
 
 
 def main(file1, file2):
@@ -112,8 +132,8 @@ def main(file1, file2):
     tokNoPunct1 = tokNoPunct(tokensList1)
     tokNoPunct2 = tokNoPunct(tokensList2)
     # compongo lista solo con primi 20 token più freq
-    tok20MostFreq1 = tok20PiuFreq(tokNoPunct1)
-    tok20MostFreq2 = tok20PiuFreq(tokNoPunct2)
+    tok20MostFreq1 = elem20PiuFreqDecresc(tokNoPunct1)
+    tok20MostFreq2 = elem20PiuFreqDecresc(tokNoPunct2)
     print "20 token più frequenti in ordine di frequenza decrescente:"
     print "\nRECENSIONI POSITIVE:\nToken:", "\tFrequenza:"
     for token in tok20MostFreq1:
@@ -126,8 +146,8 @@ def main(file1, file2):
     sostMostFreq1, aggMostFreq1 = mostFreqNomiAgg(tokensPOS1)
     sostMostFreq2, aggMostFreq2 = mostFreqNomiAgg(tokensPOS2)
     # prendo solo i primi 20 sostantivi
-    sostMostFreq1 = tok20PiuFreq(sostMostFreq1)
-    sostMostFreq2 = tok20PiuFreq(sostMostFreq2)
+    sostMostFreq1 = elem20PiuFreqDecresc(sostMostFreq1)
+    sostMostFreq2 = elem20PiuFreqDecresc(sostMostFreq2)
     print "\n20 sostantivi più frequenti in ordine di frequenza decrescente:"
     print "\nRECENSIONI POSITIVE:"
     for sostantivo in sostMostFreq1:
@@ -136,8 +156,8 @@ def main(file1, file2):
     for sostantivo in sostMostFreq2:
         print sostantivo[0], sostantivo[1]
     # prendo solo i primi 20 aggettivi
-    aggMostFreq1 = tok20PiuFreq(aggMostFreq1)
-    aggMostFreq2 = tok20PiuFreq(aggMostFreq2)
+    aggMostFreq1 = elem20PiuFreqDecresc(aggMostFreq1)
+    aggMostFreq2 = elem20PiuFreqDecresc(aggMostFreq2)
     print "\n20 aggettivi più frequenti in ordine di frequenza decrescente:"
     print "\nRECENSIONI POSITIVE:"
     for aggettivo in aggMostFreq1:
@@ -145,13 +165,14 @@ def main(file1, file2):
     print "\nRECENSIONI NEGATIVE:"
     for aggettivo in aggMostFreq2:
         print aggettivo[0], aggettivo[1]
+
     # 20 bigrammi di token più frequenti (no punteggiatura, articoli e congiunzioni)
     # prendo lista POS e rimuovo punteggiatura, articoli e congiunzioni formando la lista dei bigrammi
     listaBigr1 = noPuntArtCong(tokensPOS1)
     listaBigr2 = noPuntArtCong(tokensPOS2)
     # prendo solo i primi 20 bigrammi
-    lista20Bigr1 = tok20PiuFreq(listaBigr1)
-    lista20Bigr2 = tok20PiuFreq(listaBigr2)
+    lista20Bigr1 = elem20PiuFreqDecresc(listaBigr1)
+    lista20Bigr2 = elem20PiuFreqDecresc(listaBigr2)
     print "\n20 bigrammi più frequenti in ordine di frequenza decrescente"
     print "\nRECENSIONI POSITIVE:\n",
     for bigramma in lista20Bigr1:
@@ -159,5 +180,18 @@ def main(file1, file2):
     print "\nRECENSIONI NEGATIVE:"
     for bigramma in lista20Bigr2:
         print bigramma[0], bigramma[1]
+
+    # 10 POS più frequenti
+    listaTag1 = listaTagPOS(tokensPOS1)
+    listaTag2 = listaTagPOS(tokensPOS2)
+    POSfreq1 = elem10PiuFreqDecresc(listaTag1)
+    POSfreq2 = elem10PiuFreqDecresc(listaTag2)
+    print "\n10 PoS più frequenti in ordine di frequenza decrescente"
+    print "\nRECENSIONI POSITIVE:\n",
+    for elem in POSfreq1:
+        print elem[0],"\t", elem[1]
+    print "\nRECENSIONI NEGATIVE:"
+    for elem in POSfreq2:
+		print elem[0],"\t", elem[1]
 
 main(sys.argv[1], sys.argv[2])
