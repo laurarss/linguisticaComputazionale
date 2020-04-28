@@ -8,7 +8,7 @@
 import sys
 import codecs  # classe che contiene il metodo open()
 import nltk  # per metodo tokenize
-import collections
+import collections  # per collections.Counter()
 
 
 # tokenizza frasi e fa analisi morfosintattica(POS tagging)
@@ -59,7 +59,7 @@ def mostFreqNomiAgg(tokensPOS):
     mostFreqAgg = []
     # liste POS tags, tratte da https://www.ling.upenn.edu/courses/Fall_2003/ling001/penn_treebank_pos.html
     tagNomi = ["NN", "NNS", "NNP", "NNPS"]
-    tagAggettivi = ["JJ", "JJS", "JJR"]
+    tagAggettivi = ["JJ", "JJR", "JJS"]
     # per ogni elemento, formato dai due componenti token-tag, guardo se il secondo(il tag) è uguale a uno di quelli delle liste che mi interessano
     for elem in tokensPOS:
         if elem[1] in tagNomi:
@@ -128,11 +128,51 @@ def trigrPOS(tokensPOS):
     listaTrigrammi = nltk.trigrams(tokensPOS)
     # creo nuova lista bigrammi con i tag POS
     listaTrigrNew = []
-    for ((tok1, tag1), (tok2, tag2),(tok3, tag3)) in listaTrigrammi:
+    for ((tok1, tag1), (tok2, tag2), (tok3, tag3)) in listaTrigrammi:
         trigramma = (tag1, tag2, tag3)
         listaTrigrNew.append(trigramma)
 
     return listaTrigrNew
+
+
+# costruisce lista formata solo da aggettivi e sostantivi con frequenza maggiore di 2
+def aggSost(tokensPOS):
+    # lista vuota
+    listaNomiAgg = []
+    # liste POS tags, tratte da https://www.ling.upenn.edu/courses/Fall_2003/ling001/penn_treebank_pos.html
+    tagNomi = ["NN", "NNS", "NNP", "NNPS"]
+    tagAggettivi = ["JJ", "JJR", "JJS"]
+    # per ogni elemento, formato dai due componenti token-tag, guardo se il secondo(il tag) è uguale a uno di quelli delle liste che mi interessano
+    for elem in tokensPOS:
+        # calcolo frequenza ogni token
+        freq = tokensPOS.count(elem)
+        if freq > 2:
+            if elem[1] in tagNomi:
+                # se sì lo metto nella lista
+                listaNomiAgg.append(elem)
+            if elem[1] in tagAggettivi:
+                # se sì lo metto nella lista
+                listaNomiAgg.append(elem)
+
+    return listaNomiAgg
+
+
+# crea lista di bigrammi aggettivo-sostantivo partendo da lista di nomi e aggettivi
+def creaBigrAggSost(listaSostAgg):
+	# liste POS tags, tratte da https://www.ling.upenn.edu/courses/Fall_2003/ling001/penn_treebank_pos.html
+    tagNomi = ["NN", "NNS", "NNP", "NNPS"]
+    tagAggettivi = ["JJ", "JJR", "JJS"]
+    # creo lista bigrammi
+    listaBigrammi = nltk.bigrams(listaSostAgg)
+    # creo nuova lista bigrammi con i tag POS
+    listaBigrNew = []
+    for ((tok1, tag1), (tok2, tag2)) in listaBigrammi:
+		if tag1 in tagAggettivi:
+			if tag2 in tagNomi:
+				bigramma = (tok1, tok2)
+				listaBigrNew.append(bigramma)
+
+    return listaBigrNew
 
 
 def main(file1, file2):
@@ -221,7 +261,7 @@ def main(file1, file2):
         print elem[0], "\t", elem[1]
 
     # 10 BIGRAMMI di POS più frequenti
-    #costruisco lista bigrammi POS
+    # costruisco lista bigrammi POS
     listaBigrPOS1 = bigrPOS(tokensPOS1)
     listaBigrPOS2 = bigrPOS(tokensPOS2)
     # prendo i primi 10 in ordine decrescente
@@ -236,7 +276,7 @@ def main(file1, file2):
         print elem[0], "\t", elem[1]
 
     # 10 TRIGRAMMI di PoS più frequenti
-    #costruisco lista trigrammi POS
+    # costruisco lista trigrammi POS
     listaTrigrPOS1 = trigrPOS(tokensPOS1)
     listaTrigrPOS2 = trigrPOS(tokensPOS2)
     # prendo i primi 10 in ordine decrescente
@@ -248,6 +288,28 @@ def main(file1, file2):
         print elem[0], "\t", elem[1]
     print "\nRECENSIONI NEGATIVE:"
     for elem in decrTrigrPOS2:
-        print elem[0], "\t", elem[1]
+        print elem[0], "\t", elem[1], "\n"
+
+    # 20 bigrammi aggettivo-sostantivo (dove ogni token ha una frequenza > 2)
+    # costruisce lista formata solo da aggettivi e sostantivi con frequenza maggiore di 2
+    sostAgg1 = aggSost(tokensPOS1)
+    sostAgg2 = aggSost(tokensPOS2)
+    # costruisco lista bigrammi aggettivo-sostantivo
+    bigrSostAgg1 = creaBigrAggSost(sostAgg1)
+    bigrSostAgg2 = creaBigrAggSost(sostAgg2)
+    # prendo solo i primi 20 in ordine decresc
+    bigr20AggSost1 = elem20PiuFreqDecresc(bigrSostAgg1)
+    bigr20AggSost2 = elem20PiuFreqDecresc(bigrSostAgg2)
+    print "\n20 bigrammi aggettivo-sostantivo (dove ogni token ha una frequenza > 2)\n"
+    print "RECENSIONI POSITIVE:\n"
+    for (tok1, tok2), freq in bigr20AggSost1:
+        print(tok1, tok2),"\tFreq bigramma", freq
+        print "\tAggettivo:", tok1,"\b\bFreq assoluta:", tokensList1.count(tok1)
+        print "\tNome:", tok2,"\b\bFreq assoluta:", tokensList1.count(tok2),"\n"
+    print "\nRECENSIONI NEGATIVE:\n"
+    for (tok1, tok2), freq in bigr20AggSost2:
+        print(tok1, tok2),"\tFreq bigramma", freq
+        print "\tAggettivo:", tok1,"\b\bFreq assoluta:", tokensList2.count(tok1)
+        print "\tNome:", tok2,"\b\bFreq assoluta:", tokensList2.count(tok2),"\n"
 
 main(sys.argv[1], sys.argv[2])
