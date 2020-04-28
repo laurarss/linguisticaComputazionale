@@ -301,6 +301,7 @@ def main(file1, file2):
     bigr20AggSost1 = elem20PiuFreqDecresc(bigrSostAgg1)
     bigr20AggSost2 = elem20PiuFreqDecresc(bigrSostAgg2)
     print "\n20 bigrammi aggettivo-sostantivo (dove ogni token ha una frequenza > 2)\n"
+    print "- Con Frequenza Massima\n"
     print "RECENSIONI POSITIVE:\n"
     for (tok1, tok2), freq in bigr20AggSost1:
         print(tok1, tok2),"\tFreq bigramma", freq
