@@ -9,6 +9,7 @@ import sys
 import codecs  # classe che contiene il metodo open()
 import nltk  # per metodo tokenize
 import collections  # per collections.Counter()
+import math  # per log() di LMI
 
 
 # tokenizza frasi e fa analisi morfosintattica(POS tagging)
@@ -175,25 +176,8 @@ def creaBigrAggSost(listaSostAgg):
     return listaBigrNew
 
 
-# calcola probabilità condizionata di ogni bigramma sost-agg della lista(dalla funzione precedente)
-def probCondizionata(listaBigrammi):
-    # calcolo frequenza di ogni bigramma dalla lista sostantivi-aggettivi
-    freqBigr = collections.Counter(listaBigrammi)
-    # lista di frequenze dei bigrammi agg-sost nel corpus
-    freqBirg = freqBigr.items()
-    # creo lista con bigramma e relativa probabilità condizionata per ogni elemento
-    # for (agg,freqBirg), (nome, tag2) in listaBigrammi:
-    # formula probabilità condiz
-    # probCondiz = bigramma[1] * 1.0 / listaBigrammi.count(listaBigrammi) * 1.0
-
-    return freqBigr
-
-
-def probCongiunta(listaAggSost, tokensPOS, tokensList):
-    # calcolo frequenza di ogni elemento nella lista aggettivo-sostantivo
-    #listaAggSost = collections.Counter(listaAggSost)
-    # ordino la lista in base al più frequente
-    #listaAggSost = listaAggSost.most_common(None)
+# calcola probabilità condizionata di ogni bigramma sost-agg della lista
+def probCongiunta(listaAggSost, tokensList):
     probCongiunta = []
     for ((agg, nome), freq) in listaAggSost:
         # calcolo probabilità condizionata
@@ -202,13 +186,38 @@ def probCongiunta(listaAggSost, tokensPOS, tokensList):
         probAgg = tokensList.count(agg) * 1.0 / len(tokensList) * 1.0
         # calcolo probabilità congiunta
         probCong = probAgg * probCondiz
-        # creo nuovo elemento con bigramma e probabilità congiunta
+        # aggingo nuovo elemento nella lista, con bigramma e probabilità congiunta
         bigramma = ((agg, nome), probCong)
         probCongiunta.append(bigramma)
-    # restituisco primi 20 elem in ordine decrescente
-    #probCongiunta = probCongiunta.most_common(20)
 
     return probCongiunta
+
+
+# Calcola forza associativa max (LMI) per ogni bigramma
+# formula LMI = log2( f(a,b) * C / f(a) * f(b) )
+def forzaAssociativaMax(listaAggSost, tokensList):
+    # crea nuova lista
+    listaBigrLMI = []
+    for ((agg, nome), freq) in listaAggSost:
+        # primo elemento della formula
+        # prodotto tra la frequenza del bigramma e il totale di elementi nel corpus
+        part1 = freq * len(tokensList)
+        # frequenza della prima parola del bigramma (aggettivo)
+        fAgg = tokensList.count(agg)
+        # frequenza seconda parola bigramma (sostantivo)
+        fSost = tokensList.count(nome)
+        # secondo elemento della formula
+        # prodotto tra le frequenze delle singole parole
+        part2 = fAgg * fSost
+        # Local Mutual Information
+        LMI = (freq * 1.0) * (math.log((part1 * 1.0 / part2 * 1.0), 2))
+        # aggiungo nuovo elemento nella lista, con bigramma e LMI
+        bigramma = ((agg, nome), LMI)
+        listaBigrLMI.append(bigramma)
+    # ordino la lista per LMI decrescenti
+    listaOrdLMI = sorted(listaBigrLMI, key=lambda a: -a[1], reverse=False)
+
+    return listaOrdLMI
 
 
 def main(file1, file2):
@@ -336,29 +345,40 @@ def main(file1, file2):
     # prendo solo i primi 20 in ordine decresc (con frequenza massima)
     bigr20AggSost1 = elem20PiuFreqDecresc(bigrSostAgg1)
     bigr20AggSost2 = elem20PiuFreqDecresc(bigrSostAgg2)
-    print "\n20 bigrammi aggettivo-sostantivo (dove ogni token ha una frequenza > 2)\n"
+    print "\n\n20 bigrammi aggettivo-sostantivo (dove ogni token ha una frequenza > 2)\n"
     print "- Con Frequenza Massima\n"
     print "RECENSIONI POSITIVE:\n"
     for (tok1, tok2), freq in bigr20AggSost1:
         print(tok1, tok2), "\tFreq bigramma", freq
         print "\tAggettivo:", tok1, "\b\bFreq assoluta:", tokensList1.count(tok1)
         print "\tNome:", tok2, "\b\bFreq assoluta:", tokensList1.count(tok2), "\n"
-    print "\nRECENSIONI NEGATIVE:\n"
+    print "RECENSIONI NEGATIVE:\n"
     for (tok1, tok2), freq in bigr20AggSost2:
         print(tok1, tok2), "\tFreq bigramma", freq
         print "\tAggettivo:", tok1, "\b\bFreq assoluta:", tokensList2.count(tok1)
         print "\tNome:", tok2, "\b\bFreq assoluta:", tokensList2.count(tok2), "\n"
 
     # 20 bigrammi aggettivo-sostantivo con probabilità congiunta
-    print "- Con Probabilità Congiunta\n"
+    print "\n- Con Probabilità Congiunta\n"
     print "RECENSIONI POSITIVE:\n"
-    listaProbCong1 = probCongiunta(bigr20AggSost1, tokensPOS1, tokensList1)
+    listaProbCong1 = probCongiunta(bigr20AggSost1, tokensList1)
     for elem in listaProbCong1:
-		print elem[0],"\n\tProbabilità:", elem[1]
+        print elem[0], "\n\tProbabilità:", elem[1], "\n"
     print "\nRECENSIONI NEGATIVE:\n"
-    listaProbCong2 = probCongiunta(bigr20AggSost2, tokensPOS2, tokensList2)
+    listaProbCong2 = probCongiunta(bigr20AggSost2, tokensList2)
     for elem in listaProbCong2:
-		print elem[0],"\n\tProbabilità:", elem[1]
+        print elem[0], "\n\tProbabilità:", elem[1], "\n"
+
+    # 20 bigrammi aggettivo-sostantivo con forza associativa max (attraverso la LMI)
+    print "\n- Con Forza Associativa Massima (attraverso la Local Mutual Information)\n"
+    print "RECENSIONI POSITIVE:\n"
+    bigrLMI1 = forzaAssociativaMax(bigr20AggSost1, tokensList1)
+    for elem in bigrLMI1:
+        print elem[0], "\n\tLocal Mutual Information:", elem[1], "\n"
+    print "RECENSIONI NEGATIVE:\n"
+    bigrLMI2 = forzaAssociativaMax(bigr20AggSost2, tokensList2)
+    for elem in bigrLMI2:
+        print elem[0], "\n\tLocal Mutual Information:", elem[1], "\n"
 
 
 main(sys.argv[1], sys.argv[2])
