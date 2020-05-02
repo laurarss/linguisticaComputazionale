@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+# !/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 # Progetto di Linguistica  Computazionale - A.A. 2018/2019
@@ -159,7 +159,7 @@ def aggSost(tokensPOS):
 
 # crea lista di bigrammi aggettivo-sostantivo partendo da lista di nomi e aggettivi
 def creaBigrAggSost(listaSostAgg):
-	# liste POS tags, tratte da https://www.ling.upenn.edu/courses/Fall_2003/ling001/penn_treebank_pos.html
+    # liste POS tags, tratte da https://www.ling.upenn.edu/courses/Fall_2003/ling001/penn_treebank_pos.html
     tagNomi = ["NN", "NNS", "NNP", "NNPS"]
     tagAggettivi = ["JJ", "JJR", "JJS"]
     # creo lista bigrammi
@@ -167,12 +167,48 @@ def creaBigrAggSost(listaSostAgg):
     # creo nuova lista bigrammi con i tag POS
     listaBigrNew = []
     for ((tok1, tag1), (tok2, tag2)) in listaBigrammi:
-		if tag1 in tagAggettivi:
-			if tag2 in tagNomi:
-				bigramma = (tok1, tok2)
-				listaBigrNew.append(bigramma)
+        if tag1 in tagAggettivi:
+            if tag2 in tagNomi:
+                bigramma = (tok1, tok2)
+                listaBigrNew.append(bigramma)
 
     return listaBigrNew
+
+
+# calcola probabilità condizionata di ogni bigramma sost-agg della lista(dalla funzione precedente)
+def probCondizionata(listaBigrammi):
+    # calcolo frequenza di ogni bigramma dalla lista sostantivi-aggettivi
+    freqBigr = collections.Counter(listaBigrammi)
+    # lista di frequenze dei bigrammi agg-sost nel corpus
+    freqBirg = freqBigr.items()
+    # creo lista con bigramma e relativa probabilità condizionata per ogni elemento
+    # for (agg,freqBirg), (nome, tag2) in listaBigrammi:
+    # formula probabilità condiz
+    # probCondiz = bigramma[1] * 1.0 / listaBigrammi.count(listaBigrammi) * 1.0
+
+    return freqBigr
+
+
+def probCongiunta(listaAggSost, tokensPOS, tokensList):
+    # calcolo frequenza di ogni elemento nella lista aggettivo-sostantivo
+    #listaAggSost = collections.Counter(listaAggSost)
+    # ordino la lista in base al più frequente
+    #listaAggSost = listaAggSost.most_common(None)
+    probCongiunta = []
+    for ((agg, nome), freq) in listaAggSost:
+        # calcolo probabilità condizionata
+        probCondiz = freq * 1.0 / tokensList.count(agg) * 1.0
+        # calcolo probabilità aggettivo(prima parola del bigramma)
+        probAgg = tokensList.count(agg) * 1.0 / len(tokensList) * 1.0
+        # calcolo probabilità congiunta
+        probCong = probAgg * probCondiz
+        # creo nuovo elemento con bigramma e probabilità congiunta
+        bigramma = ((agg, nome), probCong)
+        probCongiunta.append(bigramma)
+    # restituisco primi 20 elem in ordine decrescente
+    #probCongiunta = probCongiunta.most_common(20)
+
+    return probCongiunta
 
 
 def main(file1, file2):
@@ -288,7 +324,7 @@ def main(file1, file2):
         print elem[0], "\t", elem[1]
     print "\nRECENSIONI NEGATIVE:"
     for elem in decrTrigrPOS2:
-        print elem[0], "\t", elem[1], "\n"
+        print elem[0], "\t", elem[1]
 
     # 20 bigrammi aggettivo-sostantivo (dove ogni token ha una frequenza > 2)
     # costruisce lista formata solo da aggettivi e sostantivi con frequenza maggiore di 2
@@ -297,20 +333,32 @@ def main(file1, file2):
     # costruisco lista bigrammi aggettivo-sostantivo
     bigrSostAgg1 = creaBigrAggSost(sostAgg1)
     bigrSostAgg2 = creaBigrAggSost(sostAgg2)
-    # prendo solo i primi 20 in ordine decresc
+    # prendo solo i primi 20 in ordine decresc (con frequenza massima)
     bigr20AggSost1 = elem20PiuFreqDecresc(bigrSostAgg1)
     bigr20AggSost2 = elem20PiuFreqDecresc(bigrSostAgg2)
     print "\n20 bigrammi aggettivo-sostantivo (dove ogni token ha una frequenza > 2)\n"
     print "- Con Frequenza Massima\n"
     print "RECENSIONI POSITIVE:\n"
     for (tok1, tok2), freq in bigr20AggSost1:
-        print(tok1, tok2),"\tFreq bigramma", freq
-        print "\tAggettivo:", tok1,"\b\bFreq assoluta:", tokensList1.count(tok1)
-        print "\tNome:", tok2,"\b\bFreq assoluta:", tokensList1.count(tok2),"\n"
+        print(tok1, tok2), "\tFreq bigramma", freq
+        print "\tAggettivo:", tok1, "\b\bFreq assoluta:", tokensList1.count(tok1)
+        print "\tNome:", tok2, "\b\bFreq assoluta:", tokensList1.count(tok2), "\n"
     print "\nRECENSIONI NEGATIVE:\n"
     for (tok1, tok2), freq in bigr20AggSost2:
-        print(tok1, tok2),"\tFreq bigramma", freq
-        print "\tAggettivo:", tok1,"\b\bFreq assoluta:", tokensList2.count(tok1)
-        print "\tNome:", tok2,"\b\bFreq assoluta:", tokensList2.count(tok2),"\n"
+        print(tok1, tok2), "\tFreq bigramma", freq
+        print "\tAggettivo:", tok1, "\b\bFreq assoluta:", tokensList2.count(tok1)
+        print "\tNome:", tok2, "\b\bFreq assoluta:", tokensList2.count(tok2), "\n"
+
+    # 20 bigrammi aggettivo-sostantivo con probabilità congiunta
+    print "- Con Probabilità Congiunta\n"
+    print "RECENSIONI POSITIVE:\n"
+    listaProbCong1 = probCongiunta(bigr20AggSost1, tokensPOS1, tokensList1)
+    for elem in listaProbCong1:
+		print elem[0],"\n\tProbabilità:", elem[1]
+    print "\nRECENSIONI NEGATIVE:\n"
+    listaProbCong2 = probCongiunta(bigr20AggSost2, tokensPOS2, tokensList2)
+    for elem in listaProbCong2:
+		print elem[0],"\n\tProbabilità:", elem[1]
+
 
 main(sys.argv[1], sys.argv[2])
