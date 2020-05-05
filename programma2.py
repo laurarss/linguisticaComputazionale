@@ -225,28 +225,33 @@ def forzaAssociativaMax(listaAggSost, tokensList):
 def markov0(lungCorpus, freqTok, frase):
     probabilita = 1.0
     probTokTot = {}
+
     for token in frase:
         # probabilità singoli token
         probTok = (freqTok[token] * 1.0 / lungCorpus * 1.0)
+
         # prodotto delle probabilità tra loro
         probabilita = probabilita * probTok
         probTokTot[token] = probTok
 
-        return probabilita, probTokTot
+    return probabilita, probTokTot
 
 
 # markov ordine 1
 def markov1(tokensList, freqTok, frase):
     probabilita = 1.0
     rangeFrase = frase[1:len(frase)]
+
     # estraggo bigrammi della frase e del testo completo per confrontarne le frequenze
     bigrFrase = list(bigrams(rangeFrase))
     bigrTesto = list(bigrams(tokensList))
     token = frase[1]
     probToken = (freqTok[token] * 1.0 / len(tokensList) * 1.0)
+
     for bigram in bigrFrase:
         # frequenze
         freqBigr = bigrTesto.count(bigram)
+
         # probabilità condizionata bigramma
         A = bigram[0]
         probCondiz = (freqBigr * 1.0 / tokensList.count(A) * 1.0)
@@ -397,69 +402,87 @@ def main(file1, file2):
     print "\n- Con Probabilità Congiunta\n"
     print "RECENSIONI POSITIVE:\n"
     listaProbCong1 = probCongiunta(bigr20AggSost1, tokensList1)
+
     for elem in listaProbCong1:
-      print elem[0], "\n\tProbabilità:", elem[1], "\n"
+        print elem[0], "\n\tProbabilità:", elem[1], "\n"
     print "\nRECENSIONI NEGATIVE:\n"
     listaProbCong2 = probCongiunta(bigr20AggSost2, tokensList2)
+
     for elem in listaProbCong2:
-      print elem[0], "\n\tProbabilità:", elem[1], "\n"
+        print elem[0], "\n\tProbabilità:", elem[1], "\n"
 
     # 20 bigrammi aggettivo-sostantivo con forza associativa max (attraverso la LMI)
     print "\n- Con Forza Associativa Massima (attraverso la Local Mutual Information)\n"
     print "RECENSIONI POSITIVE:\n"
+
     bigrLMI1 = forzaAssociativaMax(bigr20AggSost1, tokensList1)
+
     for elem in bigrLMI1:
         print elem[0], "\n\tLocal Mutual Information:", elem[1], "\n"
     print "RECENSIONI NEGATIVE:\n"
+
     bigrLMI2 = forzaAssociativaMax(bigr20AggSost2, tokensList2)
     for elem in bigrLMI2:
         print elem[0], "\n\tLocal Mutual Information:", elem[1], "\n"
 
     # Le 2 frasi più probabili con catene di Markov di ordine 0 e 1
     # RECENSIONI POSITIVE
+
     # lunghezza corpus
     lungCorpus1 = len(tokensList1)
+
     # frequenza dei token nel testo
     freqToken1 = nltk.FreqDist(tokensList1)
+
     # probabilità massima per Markov di ordine 0
     probMassima0_1 = 0.0
+
     # probabilità massima per Markov di ordine 1
     probMassima1_1 = 0.0
     listaFrasiTok1 = []
-    frasePiuFreq0_1 = ""
-    frasePiuFreq1_1 = ""
+
     for frase in frasi1:
+
         frase = frase.encode('utf-8')
         fraseTok = nltk.word_tokenize(frase)
+
         # ogni token deve avere frequenza > 2
         if all(freqToken1[token] > 2 for token in fraseTok):
             listaFrasiTok1.append(fraseTok)
-        for frase in listaFrasiTok1:
-            # ogni frase lunga da 6 a 8 token
-            lungFrase = len(frase)
-            if ((lungFrase > 5) and (lungFrase < 8)):
-                # calcolo catena di Markov di ordine 0
-                probab1, probabTok1 = markov0(lungCorpus1, freqToken1, frase)
-                # calcolo catena di Markov di ordine 1
-                probDip1 = markov1(tokensList1, freqToken1, frase)
-                # assegno probabilità massima(ordine 0)
-                if (probab1 > probMassima0_1):
-                    probMassima0_1 = probab1
-                    # la nuova frase con probabilità massima diventa quella che ho appena trovato
-                    frasePiuFreq0_1 = frase
-                    # probabilità token nella frase
-                    probTokMax1 = probabTok1
-                # assegno probabilità massima(ordine 1)
-                if (probDip1 > probMassima1_1):
-                    probMassima1_1 = probDip1
-                    frasePiuFreq1_1 = frase
 
-    print "\nLe 2 frasi più probabili con catene di Markov di ordine 0 e 1\n"
-    print "RECENSIONI POSITIVE:\n"
+    for frase in listaFrasiTok1:
+
+        # ogni frase lunga da 6 a 8 token
+        if ((len(frase) > 5) and (len(frase) < 9)):
+
+            # calcolo catena di Markov di ordine 0
+            probab1, probabTok1 = markov0(lungCorpus1, freqToken1, frase)
+
+            # calcolo catena di Markov di ordine 1
+            probDip1 = markov1(tokensList1, freqToken1, frase)
+
+            # assegno probabilità massima(ordine 0)
+            if (probab1 > probMassima0_1):
+                probMassima0_1 = probab1
+                # la nuova frase con probabilità massima diventa quella che ho appena trovato
+                frasePiuFreq0_1 = frase
+                # probabilità token nella frase
+                probTokMax1 = probabTok1
+
+            # assegno probabilità massima(ordine 1)
+            if (probDip1 > probMassima1_1):
+                probMassima1_1 = probDip1
+                frasePiuFreq1_1 = frase
+
     # frasePiuFreq0, probMassima0, frasePiuFreq1, probMassima1 = estraiFrasi(tokensList1, frasi1)
-    print "Frase più frequente con ordine 0:", frasePiuFreq0_1, "Probabilità:", probMassima0_1
-    for tok in frasePiuFreq1_1:
-        print "\t", tok, "\tprobabilità:\t", probTokMax1
+
+    print "\n\tLe 2 frasi più probabili con catene di Markov di ordine 0 e 1"
+    print "\nRECENSIONI POSITIVE:\n"
+    print "Frase più frequente con ordine 0:\t", frasePiuFreq0_1, "\tProbabilità:\t", probMassima0_1
+
+    for tok in frasePiuFreq0_1:
+        print tok, "\tprobabilità:\t", probTokMax1[tok]
+
     print "Frase più frequente con ordine 1:", frasePiuFreq1_1, "Probabilità:", probMassima1_1
 
 
