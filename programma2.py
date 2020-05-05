@@ -10,6 +10,7 @@ import codecs  # classe che contiene il metodo open()
 import nltk  # per metodo tokenize
 import collections  # per collections.Counter()
 import math  # per log() di LMI
+from nltk import bigrams
 
 
 # tokenizza frasi e fa analisi morfosintattica(POS tagging)
@@ -176,7 +177,7 @@ def creaBigrAggSost(listaSostAgg):
     return listaBigrNew
 
 
-# calcola probabilità condizionata di ogni bigramma sost-agg della lista
+# calcola probabilità condizionata di ogni bigramma sost-agg della lista, e lo uso per calcolare la prob congiunta
 def probCongiunta(listaAggSost, tokensList):
     probCongiunta = []
     for ((agg, nome), freq) in listaAggSost:
@@ -210,7 +211,7 @@ def forzaAssociativaMax(listaAggSost, tokensList):
         # prodotto tra le frequenze delle singole parole
         part2 = fAgg * fSost
         # Local Mutual Information
-        LMI = (freq * 1.0) * (math.log((part1 * 1.0 / part2 * 1.0), 2))
+        LMI = (freq) * (math.log((part1 * 1.0 / part2 * 1.0), 2))
         # aggiungo nuovo elemento nella lista, con bigramma e LMI
         bigramma = ((agg, nome), LMI)
         listaBigrLMI.append(bigramma)
@@ -218,6 +219,40 @@ def forzaAssociativaMax(listaAggSost, tokensList):
     listaOrdLMI = sorted(listaBigrLMI, key=lambda a: -a[1], reverse=False)
 
     return listaOrdLMI
+
+
+# markov ordine 0
+def markov0(lungCorpus, freqTok, frase):
+    probabilita = 1.0
+    probTokTot = {}
+    for token in frase:
+        # probabilità singoli token
+        probTok = (freqTok[token] * 1.0 / lungCorpus * 1.0)
+        # prodotto delle probabilità tra loro
+        probabilita = probabilita * probTok
+        probTokTot[token] = probTok
+
+        return probabilita, probTokTot
+
+
+# markov ordine 1
+def markov1(tokensList, freqTok, frase):
+    probabilita = 1.0
+    rangeFrase = frase[1:len(frase)]
+    # estraggo bigrammi della frase e del testo completo per confrontarne le frequenze
+    bigrFrase = list(bigrams(rangeFrase))
+    bigrTesto = list(bigrams(tokensList))
+    token = frase[1]
+    probToken = (freqTok[token] * 1.0 / len(tokensList) * 1.0)
+    for bigram in bigrFrase:
+        # frequenze
+        freqBigr = bigrTesto.count(bigram)
+        # probabilità condizionata bigramma
+        A = bigram[0]
+        probCondiz = (freqBigr * 1.0 / tokensList.count(A) * 1.0)
+        probabilita = probabilita * probCondiz
+
+    return probabilita * probToken
 
 
 def main(file1, file2):
@@ -363,11 +398,11 @@ def main(file1, file2):
     print "RECENSIONI POSITIVE:\n"
     listaProbCong1 = probCongiunta(bigr20AggSost1, tokensList1)
     for elem in listaProbCong1:
-        print elem[0], "\n\tProbabilità:", elem[1], "\n"
+      print elem[0], "\n\tProbabilità:", elem[1], "\n"
     print "\nRECENSIONI NEGATIVE:\n"
     listaProbCong2 = probCongiunta(bigr20AggSost2, tokensList2)
     for elem in listaProbCong2:
-        print elem[0], "\n\tProbabilità:", elem[1], "\n"
+      print elem[0], "\n\tProbabilità:", elem[1], "\n"
 
     # 20 bigrammi aggettivo-sostantivo con forza associativa max (attraverso la LMI)
     print "\n- Con Forza Associativa Massima (attraverso la Local Mutual Information)\n"
@@ -379,6 +414,53 @@ def main(file1, file2):
     bigrLMI2 = forzaAssociativaMax(bigr20AggSost2, tokensList2)
     for elem in bigrLMI2:
         print elem[0], "\n\tLocal Mutual Information:", elem[1], "\n"
+
+    # Le 2 frasi più probabili con catene di Markov di ordine 0 e 1
+    # RECENSIONI POSITIVE
+    # lunghezza corpus
+    lungCorpus1 = len(tokensList1)
+    # frequenza dei token nel testo
+    freqToken1 = nltk.FreqDist(tokensList1)
+    # probabilità massima per Markov di ordine 0
+    probMassima0_1 = 0.0
+    # probabilità massima per Markov di ordine 1
+    probMassima1_1 = 0.0
+    listaFrasiTok1 = []
+    frasePiuFreq0_1 = ""
+    frasePiuFreq1_1 = ""
+    for frase in frasi1:
+        frase = frase.encode('utf-8')
+        fraseTok = nltk.word_tokenize(frase)
+        # ogni token deve avere frequenza > 2
+        if all(freqToken1[token] > 2 for token in fraseTok):
+            listaFrasiTok1.append(fraseTok)
+        for frase in listaFrasiTok1:
+            # ogni frase lunga da 6 a 8 token
+            lungFrase = len(frase)
+            if ((lungFrase > 5) and (lungFrase < 8)):
+                # calcolo catena di Markov di ordine 0
+                probab1, probabTok1 = markov0(lungCorpus1, freqToken1, frase)
+                # calcolo catena di Markov di ordine 1
+                probDip1 = markov1(tokensList1, freqToken1, frase)
+                # assegno probabilità massima(ordine 0)
+                if (probab1 > probMassima0_1):
+                    probMassima0_1 = probab1
+                    # la nuova frase con probabilità massima diventa quella che ho appena trovato
+                    frasePiuFreq0_1 = frase
+                    # probabilità token nella frase
+                    probTokMax1 = probabTok1
+                # assegno probabilità massima(ordine 1)
+                if (probDip1 > probMassima1_1):
+                    probMassima1_1 = probDip1
+                    frasePiuFreq1_1 = frase
+
+    print "\nLe 2 frasi più probabili con catene di Markov di ordine 0 e 1\n"
+    print "RECENSIONI POSITIVE:\n"
+    # frasePiuFreq0, probMassima0, frasePiuFreq1, probMassima1 = estraiFrasi(tokensList1, frasi1)
+    print "Frase più frequente con ordine 0:", frasePiuFreq0_1, "Probabilità:", probMassima0_1
+    for tok in frasePiuFreq1_1:
+        print "\t", tok, "\tprobabilità:\t", probTokMax1
+    print "Frase più frequente con ordine 1:", frasePiuFreq1_1, "Probabilità:", probMassima1_1
 
 
 main(sys.argv[1], sys.argv[2])
