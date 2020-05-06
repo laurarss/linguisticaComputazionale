@@ -472,15 +472,21 @@ def main(file1, file2):
     # Le 2 frasi più probabili con catene di Markov di ordine 0 e 1
     # RECENSIONI POSITIVE
     frasePiuFreq0_1, probMassima0_1, probTokMax1, frasePiuFreq1_1, probMassima1_1 = estraiFrasi(tokensList1, frasi1)
+    frasePiuFreq0_2, probMassima0_2, probTokMax2, frasePiuFreq1_2, probMassima1_2 = estraiFrasi(tokensList2, frasi2)
 
     print "\n\tLe 2 frasi più probabili con catene di Markov di ordine 0 e 1"
     print "\nRECENSIONI POSITIVE:\n"
     print "Frase più frequente con ordine 0:\t", frasePiuFreq0_1, "\tProbabilità:\t", probMassima0_1
-
     for tok in frasePiuFreq0_1:
-        print tok, "\tprobabilità:\t", probTokMax1[tok]
+        print "\t", tok, "\tprobabilità:\t", probTokMax1[tok]
 
     print "Frase più frequente con ordine 1:", frasePiuFreq1_1, "Probabilità:", probMassima1_1
+    print "\nRECENSIONI NEGATIVE:\n"
+    print "Frase più frequente con ordine 0:\t", frasePiuFreq0_2, "\tProbabilità:\t", probMassima0_2
+    for tok in frasePiuFreq0_2:
+        print "\t", tok, "\tprobabilità:\t", probTokMax2[tok]
+
+    print "Frase più frequente con ordine 1:", frasePiuFreq1_2, "Probabilità:", probMassima1_2
 
 
 main(sys.argv[1], sys.argv[2])
