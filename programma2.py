@@ -260,6 +260,50 @@ def markov1(tokensList, freqTok, frase):
     return probabilita * probToken
 
 
+def estraiFrasi(tokensList1, frasi1, ):
+    # lunghezza corpus
+    lungCorpus1 = len(tokensList1)
+    # frequenza dei token nel testo
+    freqToken1 = nltk.FreqDist(tokensList1)
+
+    # probabilità massima per Markov di ordine 0
+    probMassima0_1 = 0.0
+    # probabilità massima per Markov di ordine 1
+    probMassima1_1 = 0.0
+
+    listaFrasiTok1 = []
+    for frase in frasi1:
+        frase = frase.encode('utf-8')
+        fraseTok = nltk.word_tokenize(frase)
+        # ogni token deve avere frequenza > 2
+        if all(freqToken1[token] > 2 for token in fraseTok):
+            listaFrasiTok1.append(fraseTok)
+
+    for frase in listaFrasiTok1:
+        # ogni frase lunga da 6 a 8 token
+        if ((len(frase) > 5) and (len(frase) < 9)):
+
+            # calcolo catena di Markov di ordine 0
+            probab1, probabTok1 = markov0(lungCorpus1, freqToken1, frase)
+            # calcolo catena di Markov di ordine 1
+            probDip1 = markov1(tokensList1, freqToken1, frase)
+
+            # assegno probabilità massima(ordine 0)
+            if (probab1 > probMassima0_1):
+                probMassima0_1 = probab1
+                # la nuova frase con probabilità massima diventa quella che ho appena trovato
+                frasePiuFreq0_1 = frase
+                # probabilità token nella frase
+                probTokMax1 = probabTok1
+
+            # assegno probabilità massima(ordine 1)
+            if (probDip1 > probMassima1_1):
+                probMassima1_1 = probDip1
+                frasePiuFreq1_1 = frase
+
+    return frasePiuFreq0_1, probMassima0_1, probTokMax1, frasePiuFreq1_1, probMassima1_1
+
+
 def main(file1, file2):
     # metodo open per aprire file di testo
     fileInput1 = codecs.open(file1, "r", "utf-8")
@@ -427,54 +471,7 @@ def main(file1, file2):
 
     # Le 2 frasi più probabili con catene di Markov di ordine 0 e 1
     # RECENSIONI POSITIVE
-
-    # lunghezza corpus
-    lungCorpus1 = len(tokensList1)
-
-    # frequenza dei token nel testo
-    freqToken1 = nltk.FreqDist(tokensList1)
-
-    # probabilità massima per Markov di ordine 0
-    probMassima0_1 = 0.0
-
-    # probabilità massima per Markov di ordine 1
-    probMassima1_1 = 0.0
-    listaFrasiTok1 = []
-
-    for frase in frasi1:
-
-        frase = frase.encode('utf-8')
-        fraseTok = nltk.word_tokenize(frase)
-
-        # ogni token deve avere frequenza > 2
-        if all(freqToken1[token] > 2 for token in fraseTok):
-            listaFrasiTok1.append(fraseTok)
-
-    for frase in listaFrasiTok1:
-
-        # ogni frase lunga da 6 a 8 token
-        if ((len(frase) > 5) and (len(frase) < 9)):
-
-            # calcolo catena di Markov di ordine 0
-            probab1, probabTok1 = markov0(lungCorpus1, freqToken1, frase)
-
-            # calcolo catena di Markov di ordine 1
-            probDip1 = markov1(tokensList1, freqToken1, frase)
-
-            # assegno probabilità massima(ordine 0)
-            if (probab1 > probMassima0_1):
-                probMassima0_1 = probab1
-                # la nuova frase con probabilità massima diventa quella che ho appena trovato
-                frasePiuFreq0_1 = frase
-                # probabilità token nella frase
-                probTokMax1 = probabTok1
-
-            # assegno probabilità massima(ordine 1)
-            if (probDip1 > probMassima1_1):
-                probMassima1_1 = probDip1
-                frasePiuFreq1_1 = frase
-
-    # frasePiuFreq0, probMassima0, frasePiuFreq1, probMassima1 = estraiFrasi(tokensList1, frasi1)
+    frasePiuFreq0_1, probMassima0_1, probTokMax1, frasePiuFreq1_1, probMassima1_1 = estraiFrasi(tokensList1, frasi1)
 
     print "\n\tLe 2 frasi più probabili con catene di Markov di ordine 0 e 1"
     print "\nRECENSIONI POSITIVE:\n"
