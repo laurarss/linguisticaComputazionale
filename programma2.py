@@ -329,10 +329,12 @@ def main(file1, file2):
     # compongo lista solo con primi 20 token più freq
     tok20MostFreq1 = elem20PiuFreqDecresc(tokNoPunct1)
     tok20MostFreq2 = elem20PiuFreqDecresc(tokNoPunct2)
+
     print "20 token più frequenti in ordine di frequenza decrescente:"
     print "\nRECENSIONI POSITIVE:\nToken:", "\tFrequenza:"
     for token in tok20MostFreq1:
         print token[0], "\t", token[1]
+
     print "\nRECENSIONI NEGATIVE:\nToken:", "\tFrequenza:"
     for token in tok20MostFreq2:
         print token[0], "\t", token[1]
@@ -343,20 +345,25 @@ def main(file1, file2):
     # prendo solo i primi 20 sostantivi
     sostMostFreq1 = elem20PiuFreqDecresc(sostMostFreq1)
     sostMostFreq2 = elem20PiuFreqDecresc(sostMostFreq2)
+
     print "\n20 sostantivi più frequenti in ordine di frequenza decrescente:"
     print "\nRECENSIONI POSITIVE:"
     for sostantivo in sostMostFreq1:
         print sostantivo[0], sostantivo[1]
+
     print "\nRECENSIONI NEGATIVE:"
     for sostantivo in sostMostFreq2:
         print sostantivo[0], sostantivo[1]
+
     # prendo solo i primi 20 aggettivi
     aggMostFreq1 = elem20PiuFreqDecresc(aggMostFreq1)
     aggMostFreq2 = elem20PiuFreqDecresc(aggMostFreq2)
+
     print "\n20 aggettivi più frequenti in ordine di frequenza decrescente:"
     print "\nRECENSIONI POSITIVE:"
     for aggettivo in aggMostFreq1:
         print aggettivo[0], aggettivo[1]
+
     print "\nRECENSIONI NEGATIVE:"
     for aggettivo in aggMostFreq2:
         print aggettivo[0], aggettivo[1]
@@ -368,10 +375,12 @@ def main(file1, file2):
     # prendo solo i primi 20 bigrammi
     lista20Bigr1 = elem20PiuFreqDecresc(listaBigr1)
     lista20Bigr2 = elem20PiuFreqDecresc(listaBigr2)
+
     print "\n20 bigrammi di token più frequenti in ordine di frequenza decrescente"
     print "\nRECENSIONI POSITIVE:\n",
     for bigramma in lista20Bigr1:
         print bigramma[0], bigramma[1]
+
     print "\nRECENSIONI NEGATIVE:"
     for bigramma in lista20Bigr2:
         print bigramma[0], bigramma[1]
@@ -381,10 +390,12 @@ def main(file1, file2):
     listaTag2 = listaTagPOS(tokensPOS2)
     POSfreq1 = elem10PiuFreqDecresc(listaTag1)
     POSfreq2 = elem10PiuFreqDecresc(listaTag2)
+
     print "\n10 PoS più frequenti in ordine di frequenza decrescente"
     print "\nRECENSIONI POSITIVE:\n",
     for elem in POSfreq1:
         print elem[0], "\t", elem[1]
+
     print "\nRECENSIONI NEGATIVE:"
     for elem in POSfreq2:
         print elem[0], "\t", elem[1]
@@ -400,6 +411,7 @@ def main(file1, file2):
     print "\nRECENSIONI POSITIVE:\n",
     for elem in decrBigrPOS1:
         print elem[0], "\t", elem[1]
+
     print "\nRECENSIONI NEGATIVE:"
     for elem in decrBigrPOS2:
         print elem[0], "\t", elem[1]
@@ -436,6 +448,7 @@ def main(file1, file2):
         print(tok1, tok2), "\tFreq bigramma", freq
         print "\tAggettivo:", tok1, "\b\bFreq assoluta:", tokensList1.count(tok1)
         print "\tNome:", tok2, "\b\bFreq assoluta:", tokensList1.count(tok2), "\n"
+
     print "RECENSIONI NEGATIVE:\n"
     for (tok1, tok2), freq in bigr20AggSost2:
         print(tok1, tok2), "\tFreq bigramma", freq
@@ -449,6 +462,7 @@ def main(file1, file2):
 
     for elem in listaProbCong1:
         print elem[0], "\n\tProbabilità:", elem[1], "\n"
+
     print "\nRECENSIONI NEGATIVE:\n"
     listaProbCong2 = probCongiunta(bigr20AggSost2, tokensList2)
 
@@ -476,17 +490,18 @@ def main(file1, file2):
 
     print "\n\tLe 2 frasi più probabili con catene di Markov di ordine 0 e 1"
     print "\nRECENSIONI POSITIVE:\n"
-    print "Frase più frequente con ordine 0:\t", frasePiuFreq0_1, "\tProbabilità:\t", probMassima0_1
+    print "Frase più frequente con ordine 0:\t", frasePiuFreq0_1, "\tProbabilità:\t", probMassima0_1, "\n"
     for tok in frasePiuFreq0_1:
         print "\t", tok, "\tprobabilità:\t", probTokMax1[tok]
 
-    print "Frase più frequente con ordine 1:", frasePiuFreq1_1, "Probabilità:", probMassima1_1
+    print "\nFrase più frequente con ordine 1:\t", frasePiuFreq1_1, "\tProbabilità:\t", probMassima1_1, "\n"
+
     print "\nRECENSIONI NEGATIVE:\n"
-    print "Frase più frequente con ordine 0:\t", frasePiuFreq0_2, "\tProbabilità:\t", probMassima0_2
+    print "Frase più frequente con ordine 0:\t", frasePiuFreq0_2, "\tProbabilità:\t", probMassima0_2, "\n"
     for tok in frasePiuFreq0_2:
         print "\t", tok, "\tprobabilità:\t", probTokMax2[tok]
 
-    print "Frase più frequente con ordine 1:", frasePiuFreq1_2, "Probabilità:", probMassima1_2
+    print "\nFrase più frequente con ordine 1:\t", frasePiuFreq1_2, "\tProbabilità:\t", probMassima1_2, "\n"
 
 
 main(sys.argv[1], sys.argv[2])
