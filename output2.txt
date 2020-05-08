@@ -1,0 +1,722 @@
+20 token più frequenti in ordine di frequenza decrescente:
+
+RECENSIONI POSITIVE:
+Token: 	Frequenza:
+the 	204
+I 	154
+a 	150
+and 	123
+to 	106
+is 	97
+it 	91
+of 	72
+phone 	71
+for 	58
+in 	54
+that 	52
+with 	49
+my 	46
+The 	46
+this 	46
+you 	40
+on 	36
+but 	36
+as 	34
+
+RECENSIONI NEGATIVE:
+Token: 	Frequenza:
+the 	202
+I 	137
+and 	133
+a 	126
+to 	116
+it 	102
+was 	73
+in 	60
+of 	57
+is 	54
+for 	44
+not 	41
+phone 	38
+on 	38
+this 	37
+that 	31
+n't 	31
+had 	31
+with 	29
+have 	28
+
+20 sostantivi più frequenti in ordine di frequenza decrescente:
+
+RECENSIONI POSITIVE:
+phone 71
+Kindle 25
+screen 17
+battery 16
+life 13
+SIM 12
+price 12
+phones 11
+Amazon 10
+bottle 10
+April 9
+Paperwhite 9
+people 8
+time 8
+hours 7
+camera 7
+LG 7
+day 7
+thing 7
+quality 7
+
+RECENSIONI NEGATIVE:
+phone 38
+screen 16
+cable 15
+Amazon 13
+time 13
+room 12
+refund 9
+days 9
+product 8
+device 8
+floor 8
+night 7
+problem 7
+quality 6
+battery 6
+Asus 6
+street 5
+LG 5
+March 5
+case 5
+
+20 aggettivi più frequenti in ordine di frequenza decrescente:
+
+RECENSIONI POSITIVE:
+good 15
+new 14
+first 12
+excellent 11
+last 8
+other 8
+old 7
+better 6
+basic 6
+only 5
+small 5
+many 5
+few 5
+light 5
+less 4
+extra 4
+full 4
+quick 4
+great 4
+decent 4
+
+RECENSIONI NEGATIVE:
+good 9
+other 8
+same 8
+old 7
+new 7
+great 7
+last 7
+nice 6
+wrong 6
+better 5
+bad 5
+next 5
+more 5
+several 5
+easy 4
+terrible 4
+protective 4
+hot 4
+poor 4
+such 4
+
+20 bigrammi di token più frequenti in ordine di frequenza decrescente
+
+RECENSIONI POSITIVE:
+('it', "'s") 11
+('I', 'did') 10
+('battery', 'life') 10
+('I', 'have') 10
+('April', '2019') 9
+('it', 'is') 8
+('November', '2018') 7
+('phone', 'is') 7
+('I', "'m") 7
+('A2', 'Lite') 6
+('15', 'April') 6
+('to', 'be') 6
+('is', 'excellent') 6
+('LG', 'G7') 6
+('2019', 'I') 5
+('phone', 'that') 5
+('I', 'can') 5
+('screen', 'is') 5
+('is', "n't") 5
+('which', 'I') 5
+
+RECENSIONI NEGATIVE:
+('to', 'be') 13
+('it', 'was') 11
+('I', 'had') 9
+('I', "'ve") 9
+('I', 'was') 9
+('it', "'s") 7
+('I', 'have') 7
+('does', "n't") 6
+('did', "n't") 6
+('I', 'got') 6
+('to', 'get') 6
+('would', 'have') 6
+('it', 'would') 6
+('going', 'to') 5
+('did', 'not') 5
+('I', 'can') 5
+('I', "'m") 5
+('April', '2019') 5
+('I', 'did') 4
+('I', 'think') 4
+
+10 PoS più frequenti in ordine di frequenza decrescente
+
+RECENSIONI POSITIVE:
+NN 	754
+DT 	546
+IN 	508
+JJ 	441
+RB 	367
+PRP 	344
+NNP 	295
+. 	276
+VBZ 	210
+VB 	191
+
+RECENSIONI NEGATIVE:
+NN 	689
+DT 	498
+IN 	445
+RB 	363
+PRP 	345
+JJ 	316
+. 	305
+VBD 	284
+VB 	201
+NNP 	194
+
+10 bigrammi di PoS più frequenti in ordine di frequenza decrescente
+
+RECENSIONI POSITIVE:
+('DT', 'NN') 	261
+('IN', 'DT') 	180
+('JJ', 'NN') 	166
+('NN', 'IN') 	149
+('DT', 'JJ') 	133
+('NN', '.') 	102
+('NN', 'NN') 	96
+('PRP', 'VBP') 	88
+('PRP', 'VBD') 	72
+('NN', ',') 	70
+
+RECENSIONI NEGATIVE:
+('DT', 'NN') 	271
+('IN', 'DT') 	174
+('PRP', 'VBD') 	126
+('JJ', 'NN') 	123
+('NN', '.') 	114
+('NN', 'IN') 	111
+('DT', 'JJ') 	97
+('TO', 'VB') 	81
+('.', 'PRP') 	76
+('PRP', 'VBP') 	71
+
+10 trigrammi di PoS più frequenti in ordine di frequenza decrescente
+
+RECENSIONI POSITIVE:
+('IN', 'DT', 'NN') 	89
+('DT', 'JJ', 'NN') 	75
+('DT', 'NN', 'IN') 	69
+('NN', 'IN', 'DT') 	55
+('IN', 'DT', 'JJ') 	39
+('JJ', 'NN', 'IN') 	36
+('DT', 'NN', 'NN') 	35
+('DT', 'NN', '.') 	33
+('.', 'DT', 'NN') 	31
+('VB', 'DT', 'NN') 	29
+
+RECENSIONI NEGATIVE:
+('IN', 'DT', 'NN') 	105
+('DT', 'JJ', 'NN') 	71
+('DT', 'NN', 'IN') 	53
+('NN', 'IN', 'DT') 	42
+('.', 'PRP', 'VBD') 	42
+('DT', 'NN', '.') 	39
+('VBD', 'DT', 'NN') 	34
+('DT', 'NN', 'NN') 	27
+('JJ', 'NN', '.') 	26
+('NN', '.', 'PRP') 	26
+
+
+20 bigrammi aggettivo-sostantivo (dove ogni token ha una frequenza > 2)
+
+- Con Frequenza Massima
+
+RECENSIONI POSITIVE:
+
+('new', 'Kindle') 	Freq bigramma 4
+	Aggettivo: new Freq assoluta: 14
+	Nome: Kindle Freq assoluta: 25 
+
+('basic', 'Kindle') 	Freq bigramma 4
+	Aggettivo: basic Freq assoluta: 6
+	Nome: Kindle Freq assoluta: 25 
+
+('expensive', 'phones') 	Freq bigramma 3
+	Aggettivo: expensive Freq assoluta: 3
+	Nome: phones Freq assoluta: 11 
+
+('first', 'Kindle') 	Freq bigramma 3
+	Aggettivo: first Freq assoluta: 13
+	Nome: Kindle Freq assoluta: 25 
+
+('micro', 'SD') 	Freq bigramma 2
+	Aggettivo: micro Freq assoluta: 5
+	Nome: SD Freq assoluta: 6 
+
+('last', 'year') 	Freq bigramma 2
+	Aggettivo: last Freq assoluta: 8
+	Nome: year Freq assoluta: 3 
+
+('old', 'phone') 	Freq bigramma 2
+	Aggettivo: old Freq assoluta: 7
+	Nome: phone Freq assoluta: 71 
+
+('good', 'size') 	Freq bigramma 2
+	Aggettivo: good Freq assoluta: 15
+	Nome: size Freq assoluta: 7 
+
+('solid', 'phone') 	Freq bigramma 2
+	Aggettivo: solid Freq assoluta: 3
+	Nome: phone Freq assoluta: 71 
+
+('full', 'charge') 	Freq bigramma 2
+	Aggettivo: full Freq assoluta: 4
+	Nome: charge Freq assoluta: 7 
+
+('excellent', 'quality') 	Freq bigramma 2
+	Aggettivo: excellent Freq assoluta: 13
+	Nome: quality Freq assoluta: 7 
+
+('good', 'battery') 	Freq bigramma 2
+	Aggettivo: good Freq assoluta: 15
+	Nome: battery Freq assoluta: 18 
+
+('most', 'people') 	Freq bigramma 2
+	Aggettivo: most Freq assoluta: 6
+	Nome: people Freq assoluta: 8 
+
+('chinese', 'phones') 	Freq bigramma 2
+	Aggettivo: chinese Freq assoluta: 3
+	Nome: phones Freq assoluta: 11 
+
+('other', 'models') 	Freq bigramma 2
+	Aggettivo: other Freq assoluta: 8
+	Nome: models Freq assoluta: 6 
+
+('good', 'phone') 	Freq bigramma 2
+	Aggettivo: good Freq assoluta: 15
+	Nome: phone Freq assoluta: 71 
+
+('excellent', 'price') 	Freq bigramma 2
+	Aggettivo: excellent Freq assoluta: 13
+	Nome: price Freq assoluta: 12 
+
+('light', 'screen') 	Freq bigramma 2
+	Aggettivo: light Freq assoluta: 9
+	Nome: screen Freq assoluta: 17 
+
+('other', 'phones') 	Freq bigramma 1
+	Aggettivo: other Freq assoluta: 8
+	Nome: phones Freq assoluta: 11 
+
+('new', 'Oasis') 	Freq bigramma 1
+	Aggettivo: new Freq assoluta: 14
+	Nome: Oasis Freq assoluta: 4 
+
+RECENSIONI NEGATIVE:
+
+('hot', 'water') 	Freq bigramma 2
+	Aggettivo: hot Freq assoluta: 4
+	Nome: water Freq assoluta: 3 
+
+('poor', 'quality') 	Freq bigramma 2
+	Aggettivo: poor Freq assoluta: 4
+	Nome: quality Freq assoluta: 7 
+
+('same', 'phone') 	Freq bigramma 2
+	Aggettivo: same Freq assoluta: 8
+	Nome: phone Freq assoluta: 38 
+
+('better', 'phone') 	Freq bigramma 1
+	Aggettivo: better Freq assoluta: 8
+	Nome: phone Freq assoluta: 38 
+
+('other', 'phone') 	Freq bigramma 1
+	Aggettivo: other Freq assoluta: 8
+	Nome: phone Freq assoluta: 38 
+
+('last', 'Apple') 	Freq bigramma 1
+	Aggettivo: last Freq assoluta: 7
+	Nome: Apple Freq assoluta: 3 
+
+('sleep', 'screen') 	Freq bigramma 1
+	Aggettivo: sleep Freq assoluta: 4
+	Nome: screen Freq assoluta: 18 
+
+('new', 'cord') 	Freq bigramma 1
+	Aggettivo: new Freq assoluta: 7
+	Nome: cord Freq assoluta: 4 
+
+('easy', 'product') 	Freq bigramma 1
+	Aggettivo: easy Freq assoluta: 4
+	Nome: product Freq assoluta: 8 
+
+('good', 'cable') 	Freq bigramma 1
+	Aggettivo: good Freq assoluta: 9
+	Nome: cable Freq assoluta: 15 
+
+('old', 'dirty') 	Freq bigramma 1
+	Aggettivo: old Freq assoluta: 7
+	Nome: dirty Freq assoluta: 5 
+
+('bad', 'dirty') 	Freq bigramma 1
+	Aggettivo: bad Freq assoluta: 5
+	Nome: dirty Freq assoluta: 5 
+
+('different', 'brand') 	Freq bigramma 1
+	Aggettivo: different Freq assoluta: 3
+	Nome: brand Freq assoluta: 3 
+
+('nice', 'day') 	Freq bigramma 1
+	Aggettivo: nice Freq assoluta: 6
+	Nome: day Freq assoluta: 4 
+
+('nice', 'floor') 	Freq bigramma 1
+	Aggettivo: nice Freq assoluta: 6
+	Nome: floor Freq assoluta: 8 
+
+('sleep', 'April') 	Freq bigramma 1
+	Aggettivo: sleep Freq assoluta: 4
+	Nome: April Freq assoluta: 5 
+
+('easy', 'glass') 	Freq bigramma 1
+	Aggettivo: easy Freq assoluta: 4
+	Nome: glass Freq assoluta: 5 
+
+('great', 'months') 	Freq bigramma 1
+	Aggettivo: great Freq assoluta: 7
+	Nome: months Freq assoluta: 5 
+
+('better', 'system') 	Freq bigramma 1
+	Aggettivo: better Freq assoluta: 8
+	Nome: system Freq assoluta: 3 
+
+('several', 'night') 	Freq bigramma 1
+	Aggettivo: several Freq assoluta: 5
+	Nome: night Freq assoluta: 7 
+
+
+- Con Probabilità Congiunta
+
+RECENSIONI POSITIVE:
+
+('new', 'Kindle') 
+	Probabilità: 0.000719942404608 
+
+('basic', 'Kindle') 
+	Probabilità: 0.000719942404608 
+
+('expensive', 'phones') 
+	Probabilità: 0.000539956803456 
+
+('first', 'Kindle') 
+	Probabilità: 0.000539956803456 
+
+('micro', 'SD') 
+	Probabilità: 0.000359971202304 
+
+('last', 'year') 
+	Probabilità: 0.000359971202304 
+
+('old', 'phone') 
+	Probabilità: 0.000359971202304 
+
+('good', 'size') 
+	Probabilità: 0.000359971202304 
+
+('solid', 'phone') 
+	Probabilità: 0.000359971202304 
+
+('full', 'charge') 
+	Probabilità: 0.000359971202304 
+
+('excellent', 'quality') 
+	Probabilità: 0.000359971202304 
+
+('good', 'battery') 
+	Probabilità: 0.000359971202304 
+
+('most', 'people') 
+	Probabilità: 0.000359971202304 
+
+('chinese', 'phones') 
+	Probabilità: 0.000359971202304 
+
+('other', 'models') 
+	Probabilità: 0.000359971202304 
+
+('good', 'phone') 
+	Probabilità: 0.000359971202304 
+
+('excellent', 'price') 
+	Probabilità: 0.000359971202304 
+
+('light', 'screen') 
+	Probabilità: 0.000359971202304 
+
+('other', 'phones') 
+	Probabilità: 0.000179985601152 
+
+('new', 'Oasis') 
+	Probabilità: 0.000179985601152 
+
+
+RECENSIONI NEGATIVE:
+
+('hot', 'water') 
+	Probabilità: 0.000395491398062 
+
+('poor', 'quality') 
+	Probabilità: 0.000395491398062 
+
+('same', 'phone') 
+	Probabilità: 0.000395491398062 
+
+('better', 'phone') 
+	Probabilità: 0.000197745699031 
+
+('other', 'phone') 
+	Probabilità: 0.000197745699031 
+
+('last', 'Apple') 
+	Probabilità: 0.000197745699031 
+
+('sleep', 'screen') 
+	Probabilità: 0.000197745699031 
+
+('new', 'cord') 
+	Probabilità: 0.000197745699031 
+
+('easy', 'product') 
+	Probabilità: 0.000197745699031 
+
+('good', 'cable') 
+	Probabilità: 0.000197745699031 
+
+('old', 'dirty') 
+	Probabilità: 0.000197745699031 
+
+('bad', 'dirty') 
+	Probabilità: 0.000197745699031 
+
+('different', 'brand') 
+	Probabilità: 0.000197745699031 
+
+('nice', 'day') 
+	Probabilità: 0.000197745699031 
+
+('nice', 'floor') 
+	Probabilità: 0.000197745699031 
+
+('sleep', 'April') 
+	Probabilità: 0.000197745699031 
+
+('easy', 'glass') 
+	Probabilità: 0.000197745699031 
+
+('great', 'months') 
+	Probabilità: 0.000197745699031 
+
+('better', 'system') 
+	Probabilità: 0.000197745699031 
+
+('several', 'night') 
+	Probabilità: 0.000197745699031 
+
+
+- Con Forza Associativa Massima (attraverso la Local Mutual Information)
+
+RECENSIONI POSITIVE:
+
+('basic', 'Kindle') 
+	Local Mutual Information: 28.8440487739 
+
+('expensive', 'phones') 
+	Local Mutual Information: 26.941197796 
+
+('new', 'Kindle') 
+	Local Mutual Information: 23.9544790886 
+
+('last', 'year') 
+	Local Mutual Information: 17.7097367665 
+
+('full', 'charge') 
+	Local Mutual Information: 17.2649519238 
+
+('micro', 'SD') 
+	Local Mutual Information: 17.0658805767 
+
+('first', 'Kindle') 
+	Local Mutual Information: 17.0414924304 
+
+('chinese', 'phones') 
+	Local Mutual Information: 16.7908735292 
+
+('most', 'people') 
+	Local Mutual Information: 15.7097367665 
+
+('other', 'models') 
+	Local Mutual Information: 15.7097367665 
+
+('excellent', 'quality') 
+	Local Mutual Information: 13.8640724876 
+
+('good', 'size') 
+	Local Mutual Information: 13.4511707326 
+
+('light', 'screen') 
+	Local Mutual Information: 12.3648860826 
+
+('excellent', 'price') 
+	Local Mutual Information: 12.3088573302 
+
+('solid', 'phone') 
+	Local Mutual Information: 11.4102425275 
+
+('good', 'battery') 
+	Local Mutual Information: 10.7260305739 
+
+('old', 'phone') 
+	Local Mutual Information: 8.96545768484 
+
+('good', 'phone') 
+	Local Mutual Information: 6.76638633774 
+
+('new', 'Oasis') 
+	Local Mutual Information: 6.63247596192 
+
+('other', 'phones') 
+	Local Mutual Information: 5.98039926534 
+
+RECENSIONI NEGATIVE:
+
+('hot', 'water') 
+	Local Mutual Information: 19.4382071248 
+
+('poor', 'quality') 
+	Local Mutual Information: 16.9934222821 
+
+('same', 'phone') 
+	Local Mutual Information: 10.1122770994 
+
+('different', 'brand') 
+	Local Mutual Information: 9.13414106168 
+
+('sleep', 'April') 
+	Local Mutual Information: 7.98213796824 
+
+('easy', 'glass') 
+	Local Mutual Information: 7.98213796824 
+
+('last', 'Apple') 
+	Local Mutual Information: 7.91174864035 
+
+('nice', 'day') 
+	Local Mutual Information: 7.71910356241 
+
+('better', 'system') 
+	Local Mutual Information: 7.71910356241 
+
+('bad', 'dirty') 
+	Local Mutual Information: 7.66020987335 
+
+('new', 'cord') 
+	Local Mutual Information: 7.49671114107 
+
+('easy', 'product') 
+	Local Mutual Information: 7.30406606313 
+
+('old', 'dirty') 
+	Local Mutual Information: 7.17478304618 
+
+('great', 'months') 
+	Local Mutual Information: 7.17478304618 
+
+('several', 'night') 
+	Local Mutual Information: 7.17478304618 
+
+('nice', 'floor') 
+	Local Mutual Information: 6.71910356241 
+
+('sleep', 'screen') 
+	Local Mutual Information: 6.13414106168 
+
+('good', 'cable') 
+	Local Mutual Information: 5.22725046608 
+
+('better', 'phone') 
+	Local Mutual Information: 4.05613854968 
+
+('other', 'phone') 
+	Local Mutual Information: 4.05613854968 
+
+
+	Le 2 frasi più probabili con catene di Markov di ordine 0 e 1
+
+RECENSIONI POSITIVE:
+
+Frase più frequente con ordine 0:	['What', 'a', 'phone', '!', '!', '!'] 
+Probabilità:	2.38435838934e-14 
+
+	What 	probabilità:	0.000539956803456
+	a 	probabilità:	0.0269978401728
+	phone 	probabilità:	0.0127789776818
+	! 	probabilità:	0.00503959683225
+	! 	probabilità:	0.00503959683225
+	! 	probabilità:	0.00503959683225
+
+Frase più frequente con ordine 1:	['(', 'I', 'did', "n't", '!', ')', '.'] 
+Probabilità:	4.08130614857e-07 
+
+
+RECENSIONI NEGATIVE:
+
+Frase più frequente con ordine 0:	['It', 'was', 'terrible', '!', '!', '!'] 
+Probabilità:	1.93342135621e-14 
+
+	It 	probabilità:	0.0025706940874
+	was 	probabilità:	0.0144354360293
+	terrible 	probabilità:	0.000790982796124
+	! 	probabilità:	0.00870081075737
+	! 	probabilità:	0.00870081075737
+	! 	probabilità:	0.00870081075737
+
+Frase più frequente con ordine 1:	['It', 'was', 'terrible', '!', '!', '!'] 
+Probabilità:	5.74545225749e-06 
+

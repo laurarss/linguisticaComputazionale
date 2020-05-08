@@ -1,0 +1,59 @@
+
+NUMERO FRASI E TOKEN:
+
+RECENSIONI POSITIVE:
+ Numero frasi:	277 	Numero token:	5556 
+RECENSIONI NEGATIVE:
+ Numero frasi:	291 	Numero token:	5057 
+
+ Il corpus recensioni negative presenta un numero maggiore di frasi
+
+
+LUNGHEZZA MEDIA FRASI E TOKEN
+
+RECENSIONI POSITIVE:
+ Lunghezza media frasi in token:	20.0577617329 	Lunghezza media token: 3.9535637149
+RECENSIONI NEGATIVE:
+ Lunghezza media frasi in token:	17.3780068729 	Lunghezza media token: 3.84615384615 
+
+ Il corpus recensioni positive presenta un maggior numero medio di token per frase
+ Il corpus recensioni positive presenta un maggior numero medio di caratteri per token
+
+VOCABOLARIO E TTR PER PORZIONI INCREMENTALI DI TOKEN
+
+RECENSIONI POSITIVE:
+ - primi 1000 token 	vocabolario: 461 	TTR: 0.461
+ - primi 2000 token 	vocabolario: 732 	TTR: 0.366
+ - primi 3000 token 	vocabolario: 955 	TTR: 0.318333333333
+ - primi 4000 token 	vocabolario: 1201 	TTR: 0.30025
+ - primi 5000 token 	vocabolario: 1396 	TTR: 0.2792
+ Intero Corpus 	vocabolario: 1461 	TTR: 0.262958963283
+
+RECENSIONI NEGATIVE:
+- primi 1000 token 	vocabolario: 448 	TTR: 0.448
+ - primi 2000 token 	vocabolario: 736 	TTR: 0.368
+ - primi 3000 token 	vocabolario: 998 	TTR: 0.332666666667
+ - primi 4000 token 	vocabolario: 1191 	TTR: 0.29775
+ - primi 5000 token 	vocabolario: 1351 	TTR: 0.2702
+ Intero Corpus 	vocabolario: 1368 	TTR: 0.270516116274
+
+CLASSI DI FREQUENZA V3, V6 e V9
+
+RECENSIONI POSITIVE:
+ V3:	94 	V6:	30 	V9:	5
+RECENSIONI NEGATIVE:
+ V3:	101 	V6:	19 	V9:	7
+
+NUMERO MEDIO SOSTANTIVI, AVVERBI E VERBI PER FRASE
+
+RECENSIONI POSITIVE: Media..	nomi: 4.42599277978 	aggettivi: 1.70397111913 	verbi: 3.04332129964
+
+RECENSIONI NEGATIVE: Media..	nomi: 3.51202749141 	aggettivi: 1.18900343643 	verbi: 3.10309278351
+
+DENSITA' LESSICALE
+
+RECENSIONI POSITIVE: 0.661971830986
+
+RECENSIONI NEGATIVE: 0.689101172384
+
+Il corpus recensioni negative ha una densità lessicale maggiore
