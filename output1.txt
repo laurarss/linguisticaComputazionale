@@ -1,4 +1,3 @@
-
 NUMERO FRASI E TOKEN:
 
 RECENSIONI POSITIVE:
@@ -19,23 +18,22 @@ RECENSIONI NEGATIVE:
  Il corpus recensioni positive presenta un maggior numero medio di token per frase
  Il corpus recensioni positive presenta un maggior numero medio di caratteri per token
 
-VOCABOLARIO E TTR PER PORZIONI INCREMENTALI DI TOKEN
+VOCABOLARIO E TTR PER PORZIONI INCREMENTALI DI 1000 TOKEN
 
 RECENSIONI POSITIVE:
- - primi 1000 token 	vocabolario: 461 	TTR: 0.461
- - primi 2000 token 	vocabolario: 732 	TTR: 0.366
- - primi 3000 token 	vocabolario: 955 	TTR: 0.318333333333
- - primi 4000 token 	vocabolario: 1201 	TTR: 0.30025
- - primi 5000 token 	vocabolario: 1396 	TTR: 0.2792
- Intero Corpus 	vocabolario: 1461 	TTR: 0.262958963283
-
+ - primi 1000 token:	vocabolario: 461 	TTR: 0.461
+ - primi 2000 token:	vocabolario: 732 	TTR: 0.366
+ - primi 3000 token:	vocabolario: 955 	TTR: 0.318333333333
+ - primi 4000 token:	vocabolario: 1201 	TTR: 0.30025
+ - primi 5000 token:	vocabolario: 1396 	TTR: 0.2792
+ Intero Corpus: 	vocabolario: 1461 	TTR: 0.262958963283
 RECENSIONI NEGATIVE:
-- primi 1000 token 	vocabolario: 448 	TTR: 0.448
- - primi 2000 token 	vocabolario: 736 	TTR: 0.368
- - primi 3000 token 	vocabolario: 998 	TTR: 0.332666666667
- - primi 4000 token 	vocabolario: 1191 	TTR: 0.29775
- - primi 5000 token 	vocabolario: 1351 	TTR: 0.2702
- Intero Corpus 	vocabolario: 1368 	TTR: 0.270516116274
+ - primi 1000 token:	vocabolario: 448 	TTR: 0.448
+ - primi 2000 token:	vocabolario: 736 	TTR: 0.368
+ - primi 3000 token:	vocabolario: 998 	TTR: 0.332666666667
+ - primi 4000 token:	vocabolario: 1191 	TTR: 0.29775
+ - primi 5000 token:	vocabolario: 1351 	TTR: 0.2702
+ Intero Corpus: 	vocabolario: 1368 	TTR: 0.270516116274
 
 CLASSI DI FREQUENZA V3, V6 e V9
 

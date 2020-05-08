@@ -159,7 +159,7 @@ def main(file1, file2):
     numToken1 = len(tokensList1)
     numToken2 = len(tokensList2)
 
-    print "\nNUMERO FRASI E TOKEN:\n"
+    print "NUMERO FRASI E TOKEN:\n"
     print "RECENSIONI POSITIVE:\n Numero frasi:\t", numFrasi1, "\tNumero token:\t", numToken1,
     print "\nRECENSIONI NEGATIVE:\n Numero frasi:\t", numFrasi2, "\tNumero token:\t", numToken2, "\n"
     if (numFrasi1 > numFrasi2):
@@ -205,6 +205,7 @@ def main(file1, file2):
         TTR1 = TTR(vocCount1, tokensList1[:int(part)])
         # stampo risultati
         print " - primi", int(part), "token:\tvocabolario:", vocCount1, "\tTTR:", TTR1
+
     # vocabolario intero corpus
     vocabulary1 = vocabularyCount(tokensList1)
     # TTR intero corpus
@@ -221,6 +222,7 @@ def main(file1, file2):
         TTR2 = TTR(vocCount2, tokensList2[:int(part)])
         # stampo risultati
         print " - primi", int(part), "token:\tvocabolario:", vocCount2, "\tTTR:", TTR2
+
     # vocabolario intero corpus
     vocabulary2 = vocabularyCount(tokensList2)
     # TTR intero corpus
