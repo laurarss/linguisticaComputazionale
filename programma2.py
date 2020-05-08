@@ -260,48 +260,53 @@ def markov1(tokensList, freqTok, frase):
     return probabilita * probToken
 
 
-def estraiFrasi(tokensList1, frasi1, ):
-    # lunghezza corpus
-    lungCorpus1 = len(tokensList1)
+def estraiFrasi(tokensList, frasi):
     # frequenza dei token nel testo
-    freqToken1 = nltk.FreqDist(tokensList1)
+    freqToken = nltk.FreqDist(tokensList)
 
-    # probabilità massima per Markov di ordine 0
-    probMassima0_1 = 0.0
-    # probabilità massima per Markov di ordine 1
-    probMassima1_1 = 0.0
-
-    listaFrasiTok1 = []
-    for frase in frasi1:
+    listaFrasiTok = []
+    for frase in frasi:
         frase = frase.encode('utf-8')
+        # tokenizzo le frasi
         fraseTok = nltk.word_tokenize(frase)
         # ogni token deve avere frequenza > 2
-        if all(freqToken1[token] > 2 for token in fraseTok):
-            listaFrasiTok1.append(fraseTok)
+        if all(freqToken[token] > 2 for token in fraseTok):
+            listaFrasiTok.append(fraseTok)
 
-    for frase in listaFrasiTok1:
+    return listaFrasiTok, freqToken
+
+def calcolaMarkov(tokensList, listaFrasiTok, freqToken):
+    # lunghezza corpus
+    lungCorpus = len(tokensList)
+
+    # probabilità massima per Markov di ordine 0
+    probMassima0 = 0.0
+    # probabilità massima per Markov di ordine 1
+    probMassima1 = 0.0
+
+    for frase in listaFrasiTok:
         # ogni frase lunga da 6 a 8 token
         if ((len(frase) > 5) and (len(frase) < 9)):
 
             # calcolo catena di Markov di ordine 0
-            probab1, probabTok1 = markov0(lungCorpus1, freqToken1, frase)
+            probab, probabTok = markov0(lungCorpus, freqToken, frase)
             # calcolo catena di Markov di ordine 1
-            probDip1 = markov1(tokensList1, freqToken1, frase)
+            probDip = markov1(tokensList, freqToken, frase)
 
             # assegno probabilità massima(ordine 0)
-            if (probab1 > probMassima0_1):
-                probMassima0_1 = probab1
+            if (probab > probMassima0):
+                probMassima0 = probab
                 # la nuova frase con probabilità massima diventa quella che ho appena trovato
-                frasePiuFreq0_1 = frase
+                frasePiuFreq0 = frase
                 # probabilità token nella frase
-                probTokMax1 = probabTok1
+                probTokMax = probabTok
 
             # assegno probabilità massima(ordine 1)
-            if (probDip1 > probMassima1_1):
-                probMassima1_1 = probDip1
-                frasePiuFreq1_1 = frase
+            if (probDip > probMassima1):
+                probMassima1 = probDip
+                frasePiuFreq1 = frase
 
-    return frasePiuFreq0_1, probMassima0_1, probTokMax1, frasePiuFreq1_1, probMassima1_1
+    return frasePiuFreq0, probMassima0, probTokMax, frasePiuFreq1, probMassima1
 
 
 def main(file1, file2):
@@ -485,23 +490,24 @@ def main(file1, file2):
 
     # Le 2 frasi più probabili con catene di Markov di ordine 0 e 1
     # RECENSIONI POSITIVE
-    frasePiuFreq0_1, probMassima0_1, probTokMax1, frasePiuFreq1_1, probMassima1_1 = estraiFrasi(tokensList1, frasi1)
-    frasePiuFreq0_2, probMassima0_2, probTokMax2, frasePiuFreq1_2, probMassima1_2 = estraiFrasi(tokensList2, frasi2)
+    listaFrasiTok1, freqToken1 = estraiFrasi(tokensList1, frasi1)
+    frasePiuFreq0_1, probMassima0_1, probTokMax1, frasePiuFreq1_1, probMassima1_1 = calcolaMarkov(tokensList1, listaFrasiTok1, freqToken1)
+    # RECENSIONI NEGATIVE
+    listaFrasiTok2, freqToken2 = estraiFrasi(tokensList2, frasi2)
+    frasePiuFreq0_2, probMassima0_2, probTokMax2, frasePiuFreq1_2, probMassima1_2 = calcolaMarkov(tokensList2, listaFrasiTok2, freqToken2)
 
     print "\n\tLe 2 frasi più probabili con catene di Markov di ordine 0 e 1"
     print "\nRECENSIONI POSITIVE:\n"
-    print "Frase più frequente con ordine 0:\t", frasePiuFreq0_1, "\tProbabilità:\t", probMassima0_1, "\n"
+    print "Frase più frequente con ordine 0:\t", frasePiuFreq0_1, "\nProbabilità:\t", probMassima0_1, "\n"
     for tok in frasePiuFreq0_1:
         print "\t", tok, "\tprobabilità:\t", probTokMax1[tok]
-
-    print "\nFrase più frequente con ordine 1:\t", frasePiuFreq1_1, "\tProbabilità:\t", probMassima1_1, "\n"
+    print "\nFrase più frequente con ordine 1:\t", frasePiuFreq1_1, "\nProbabilità:\t", probMassima1_1, "\n"
 
     print "\nRECENSIONI NEGATIVE:\n"
-    print "Frase più frequente con ordine 0:\t", frasePiuFreq0_2, "\tProbabilità:\t", probMassima0_2, "\n"
+    print "Frase più frequente con ordine 0:\t", frasePiuFreq0_2, "\nProbabilità:\t", probMassima0_2, "\n"
     for tok in frasePiuFreq0_2:
         print "\t", tok, "\tprobabilità:\t", probTokMax2[tok]
-
-    print "\nFrase più frequente con ordine 1:\t", frasePiuFreq1_2, "\tProbabilità:\t", probMassima1_2, "\n"
+    print "\nFrase più frequente con ordine 1:\t", frasePiuFreq1_2, "\nProbabilità:\t", probMassima1_2, "\n"
 
 
 main(sys.argv[1], sys.argv[2])
