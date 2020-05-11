@@ -491,14 +491,10 @@ def main(file1, file2):
     # Le 2 frasi più probabili con catene di Markov di ordine 0 e 1
     # RECENSIONI POSITIVE
     listaFrasiTok1, freqToken1 = estraiFrasi(tokensList1, frasi1)
-    frasePiuFreq0_1, probMassima0_1, probTokMax1, frasePiuFreq1_1, probMassima1_1 = calcolaMarkov(tokensList1,
-                                                                                                  listaFrasiTok1,
-                                                                                                  freqToken1)
+    frasePiuFreq0_1, probMassima0_1, probTokMax1, frasePiuFreq1_1, probMassima1_1 = calcolaMarkov(tokensList1, listaFrasiTok1, freqToken1)
     # RECENSIONI NEGATIVE
     listaFrasiTok2, freqToken2 = estraiFrasi(tokensList2, frasi2)
-    frasePiuFreq0_2, probMassima0_2, probTokMax2, frasePiuFreq1_2, probMassima1_2 = calcolaMarkov(tokensList2,
-                                                                                                  listaFrasiTok2,
-                                                                                                  freqToken2)
+    frasePiuFreq0_2, probMassima0_2, probTokMax2, frasePiuFreq1_2, probMassima1_2 = calcolaMarkov(tokensList2, listaFrasiTok2, freqToken2)
 
     print "\n\tLe 2 frasi più probabili con catene di Markov di ordine 0 e 1"
     print "\nRECENSIONI POSITIVE:\n"
