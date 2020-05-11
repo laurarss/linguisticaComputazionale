@@ -11,9 +11,9 @@ RECENSIONI NEGATIVE:
 LUNGHEZZA MEDIA FRASI E TOKEN
 
 RECENSIONI POSITIVE:
- Lunghezza media frasi in token:	20.0577617329 	Lunghezza media token: 3.9535637149
+ Lunghezza media frasi in token:	20.0577617329 	Lunghezza media token in caratteri: 3.9535637149
 RECENSIONI NEGATIVE:
- Lunghezza media frasi in token:	17.3780068729 	Lunghezza media token: 3.84615384615 
+ Lunghezza media frasi in token:	17.3780068729 	Lunghezza media token in caratteri: 3.84615384615
 
  Il corpus recensioni positive presenta un maggior numero medio di token per frase
  Il corpus recensioni positive presenta un maggior numero medio di caratteri per token
@@ -50,8 +50,8 @@ RECENSIONI NEGATIVE: Media..	nomi: 3.51202749141 	aggettivi: 1.18900343643 	verb
 
 DENSITA' LESSICALE
 
-RECENSIONI POSITIVE: 0.661971830986
+RECENSIONI POSITIVE: 0.572183098592
 
-RECENSIONI NEGATIVE: 0.689101172384
+RECENSIONI NEGATIVE: 0.573382544507
 
 Il corpus recensioni negative ha una densità lessicale maggiore

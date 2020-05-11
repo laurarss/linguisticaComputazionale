@@ -128,7 +128,7 @@ def contaAvverbiPunteggiatura(tokensPOS):
 # calcola densità lessicale con in input le occorrenze di nomi/aggettivi/verbi/avverbi
 def densitaLessicale(nomi, aggettivi, verbi, avverbi, punteggiatura, numTokens):
     densLess = 0
-    densLess = (nomi + verbi + aggettivi + verbi) * 1.0 / (numTokens - punteggiatura) * 1.0
+    densLess = (nomi + verbi + aggettivi + avverbi) * 1.0 / (numTokens - punteggiatura) * 1.0
 
     return densLess
 
