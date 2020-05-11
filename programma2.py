@@ -451,14 +451,14 @@ def main(file1, file2):
     print "RECENSIONI POSITIVE:\n"
     for (tok1, tok2), freq in bigr20AggSost1:
         print(tok1, tok2), "\tFreq bigramma", freq
-        print "\tAggettivo:", tok1, "\b\bFreq assoluta:", tokensList1.count(tok1)
-        print "\tNome:", tok2, "\b\bFreq assoluta:", tokensList1.count(tok2), "\n"
+        print "\tAggettivo:", tok1, "\tFreq assoluta:", tokensList1.count(tok1)
+        print "\tNome:", tok2, "\tFreq assoluta:", tokensList1.count(tok2), "\n"
 
     print "RECENSIONI NEGATIVE:\n"
     for (tok1, tok2), freq in bigr20AggSost2:
         print(tok1, tok2), "\tFreq bigramma", freq
-        print "\tAggettivo:", tok1, "\b\bFreq assoluta:", tokensList2.count(tok1)
-        print "\tNome:", tok2, "\b\bFreq assoluta:", tokensList2.count(tok2), "\n"
+        print "\tAggettivo:", tok1, "\tFreq assoluta:", tokensList2.count(tok1)
+        print "\tNome:", tok2, "\tFreq assoluta:", tokensList2.count(tok2), "\n"
 
     # 20 bigrammi aggettivo-sostantivo con probabilità congiunta
     print "\n- Con Probabilità Congiunta\n"

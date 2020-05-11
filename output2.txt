@@ -270,429 +270,429 @@ RECENSIONI NEGATIVE:
 RECENSIONI POSITIVE:
 
 ('new', 'Kindle') 	Freq bigramma 4
-	Aggettivo: new Freq assoluta: 14
-	Nome: Kindle Freq assoluta: 25 
+	Aggettivo: new 	Freq assoluta: 14
+	Nome: Kindle 	Freq assoluta: 25
 
 ('basic', 'Kindle') 	Freq bigramma 4
-	Aggettivo: basic Freq assoluta: 6
-	Nome: Kindle Freq assoluta: 25 
+	Aggettivo: basic 	Freq assoluta: 6
+	Nome: Kindle 	Freq assoluta: 25
 
 ('expensive', 'phones') 	Freq bigramma 3
-	Aggettivo: expensive Freq assoluta: 3
-	Nome: phones Freq assoluta: 11 
+	Aggettivo: expensive 	Freq assoluta: 3
+	Nome: phones 	Freq assoluta: 11
 
 ('first', 'Kindle') 	Freq bigramma 3
-	Aggettivo: first Freq assoluta: 13
-	Nome: Kindle Freq assoluta: 25 
+	Aggettivo: first 	Freq assoluta: 13
+	Nome: Kindle 	Freq assoluta: 25
 
 ('micro', 'SD') 	Freq bigramma 2
-	Aggettivo: micro Freq assoluta: 5
-	Nome: SD Freq assoluta: 6 
+	Aggettivo: micro 	Freq assoluta: 5
+	Nome: SD 	Freq assoluta: 6
 
 ('last', 'year') 	Freq bigramma 2
-	Aggettivo: last Freq assoluta: 8
-	Nome: year Freq assoluta: 3 
+	Aggettivo: last 	Freq assoluta: 8
+	Nome: year 	Freq assoluta: 3
 
 ('old', 'phone') 	Freq bigramma 2
-	Aggettivo: old Freq assoluta: 7
-	Nome: phone Freq assoluta: 71 
+	Aggettivo: old 	Freq assoluta: 7
+	Nome: phone 	Freq assoluta: 71
 
 ('good', 'size') 	Freq bigramma 2
-	Aggettivo: good Freq assoluta: 15
-	Nome: size Freq assoluta: 7 
+	Aggettivo: good 	Freq assoluta: 15
+	Nome: size 	Freq assoluta: 7
 
 ('solid', 'phone') 	Freq bigramma 2
-	Aggettivo: solid Freq assoluta: 3
-	Nome: phone Freq assoluta: 71 
+	Aggettivo: solid 	Freq assoluta: 3
+	Nome: phone 	Freq assoluta: 71
 
 ('full', 'charge') 	Freq bigramma 2
-	Aggettivo: full Freq assoluta: 4
-	Nome: charge Freq assoluta: 7 
+	Aggettivo: full 	Freq assoluta: 4
+	Nome: charge 	Freq assoluta: 7
 
 ('excellent', 'quality') 	Freq bigramma 2
-	Aggettivo: excellent Freq assoluta: 13
-	Nome: quality Freq assoluta: 7 
+	Aggettivo: excellent 	Freq assoluta: 13
+	Nome: quality 	Freq assoluta: 7
 
 ('good', 'battery') 	Freq bigramma 2
-	Aggettivo: good Freq assoluta: 15
-	Nome: battery Freq assoluta: 18 
+	Aggettivo: good 	Freq assoluta: 15
+	Nome: battery 	Freq assoluta: 18
 
 ('most', 'people') 	Freq bigramma 2
-	Aggettivo: most Freq assoluta: 6
-	Nome: people Freq assoluta: 8 
+	Aggettivo: most 	Freq assoluta: 6
+	Nome: people 	Freq assoluta: 8
 
 ('chinese', 'phones') 	Freq bigramma 2
-	Aggettivo: chinese Freq assoluta: 3
-	Nome: phones Freq assoluta: 11 
+	Aggettivo: chinese 	Freq assoluta: 3
+	Nome: phones 	Freq assoluta: 11
 
 ('other', 'models') 	Freq bigramma 2
-	Aggettivo: other Freq assoluta: 8
-	Nome: models Freq assoluta: 6 
+	Aggettivo: other 	Freq assoluta: 8
+	Nome: models 	Freq assoluta: 6
 
 ('good', 'phone') 	Freq bigramma 2
-	Aggettivo: good Freq assoluta: 15
-	Nome: phone Freq assoluta: 71 
+	Aggettivo: good 	Freq assoluta: 15
+	Nome: phone 	Freq assoluta: 71
 
 ('excellent', 'price') 	Freq bigramma 2
-	Aggettivo: excellent Freq assoluta: 13
-	Nome: price Freq assoluta: 12 
+	Aggettivo: excellent 	Freq assoluta: 13
+	Nome: price 	Freq assoluta: 12
 
 ('light', 'screen') 	Freq bigramma 2
-	Aggettivo: light Freq assoluta: 9
-	Nome: screen Freq assoluta: 17 
+	Aggettivo: light 	Freq assoluta: 9
+	Nome: screen 	Freq assoluta: 17
 
 ('other', 'phones') 	Freq bigramma 1
-	Aggettivo: other Freq assoluta: 8
-	Nome: phones Freq assoluta: 11 
+	Aggettivo: other 	Freq assoluta: 8
+	Nome: phones 	Freq assoluta: 11
 
 ('new', 'Oasis') 	Freq bigramma 1
-	Aggettivo: new Freq assoluta: 14
-	Nome: Oasis Freq assoluta: 4 
+	Aggettivo: new 	Freq assoluta: 14
+	Nome: Oasis 	Freq assoluta: 4
 
 RECENSIONI NEGATIVE:
 
 ('hot', 'water') 	Freq bigramma 2
-	Aggettivo: hot Freq assoluta: 4
-	Nome: water Freq assoluta: 3 
+	Aggettivo: hot 	Freq assoluta: 4
+	Nome: water 	Freq assoluta: 3
 
 ('poor', 'quality') 	Freq bigramma 2
-	Aggettivo: poor Freq assoluta: 4
-	Nome: quality Freq assoluta: 7 
+	Aggettivo: poor 	Freq assoluta: 4
+	Nome: quality 	Freq assoluta: 7
 
 ('same', 'phone') 	Freq bigramma 2
-	Aggettivo: same Freq assoluta: 8
-	Nome: phone Freq assoluta: 38 
+	Aggettivo: same 	Freq assoluta: 8
+	Nome: phone 	Freq assoluta: 38
 
 ('better', 'phone') 	Freq bigramma 1
-	Aggettivo: better Freq assoluta: 8
-	Nome: phone Freq assoluta: 38 
+	Aggettivo: better 	Freq assoluta: 8
+	Nome: phone 	Freq assoluta: 38
 
 ('other', 'phone') 	Freq bigramma 1
-	Aggettivo: other Freq assoluta: 8
-	Nome: phone Freq assoluta: 38 
+	Aggettivo: other 	Freq assoluta: 8
+	Nome: phone 	Freq assoluta: 38
 
 ('last', 'Apple') 	Freq bigramma 1
-	Aggettivo: last Freq assoluta: 7
-	Nome: Apple Freq assoluta: 3 
+	Aggettivo: last 	Freq assoluta: 7
+	Nome: Apple 	Freq assoluta: 3
 
 ('sleep', 'screen') 	Freq bigramma 1
-	Aggettivo: sleep Freq assoluta: 4
-	Nome: screen Freq assoluta: 18 
+	Aggettivo: sleep 	Freq assoluta: 4
+	Nome: screen 	Freq assoluta: 18
 
 ('new', 'cord') 	Freq bigramma 1
-	Aggettivo: new Freq assoluta: 7
-	Nome: cord Freq assoluta: 4 
+	Aggettivo: new 	Freq assoluta: 7
+	Nome: cord 	Freq assoluta: 4
 
 ('easy', 'product') 	Freq bigramma 1
-	Aggettivo: easy Freq assoluta: 4
-	Nome: product Freq assoluta: 8 
+	Aggettivo: easy 	Freq assoluta: 4
+	Nome: product 	Freq assoluta: 8
 
 ('good', 'cable') 	Freq bigramma 1
-	Aggettivo: good Freq assoluta: 9
-	Nome: cable Freq assoluta: 15 
+	Aggettivo: good 	Freq assoluta: 9
+	Nome: cable 	Freq assoluta: 15
 
 ('old', 'dirty') 	Freq bigramma 1
-	Aggettivo: old Freq assoluta: 7
-	Nome: dirty Freq assoluta: 5 
+	Aggettivo: old 	Freq assoluta: 7
+	Nome: dirty 	Freq assoluta: 5
 
 ('bad', 'dirty') 	Freq bigramma 1
-	Aggettivo: bad Freq assoluta: 5
-	Nome: dirty Freq assoluta: 5 
+	Aggettivo: bad 	Freq assoluta: 5
+	Nome: dirty 	Freq assoluta: 5
 
 ('different', 'brand') 	Freq bigramma 1
-	Aggettivo: different Freq assoluta: 3
-	Nome: brand Freq assoluta: 3 
+	Aggettivo: different 	Freq assoluta: 3
+	Nome: brand 	Freq assoluta: 3
 
 ('nice', 'day') 	Freq bigramma 1
-	Aggettivo: nice Freq assoluta: 6
-	Nome: day Freq assoluta: 4 
+	Aggettivo: nice 	Freq assoluta: 6
+	Nome: day 	Freq assoluta: 4
 
 ('nice', 'floor') 	Freq bigramma 1
-	Aggettivo: nice Freq assoluta: 6
-	Nome: floor Freq assoluta: 8 
+	Aggettivo: nice 	Freq assoluta: 6
+	Nome: floor 	Freq assoluta: 8
 
 ('sleep', 'April') 	Freq bigramma 1
-	Aggettivo: sleep Freq assoluta: 4
-	Nome: April Freq assoluta: 5 
+	Aggettivo: sleep 	Freq assoluta: 4
+	Nome: April 	Freq assoluta: 5
 
 ('easy', 'glass') 	Freq bigramma 1
-	Aggettivo: easy Freq assoluta: 4
-	Nome: glass Freq assoluta: 5 
+	Aggettivo: easy 	Freq assoluta: 4
+	Nome: glass 	Freq assoluta: 5
 
 ('great', 'months') 	Freq bigramma 1
-	Aggettivo: great Freq assoluta: 7
-	Nome: months Freq assoluta: 5 
+	Aggettivo: great 	Freq assoluta: 7
+	Nome: months 	Freq assoluta: 5
 
 ('better', 'system') 	Freq bigramma 1
-	Aggettivo: better Freq assoluta: 8
-	Nome: system Freq assoluta: 3 
+	Aggettivo: better 	Freq assoluta: 8
+	Nome: system 	Freq assoluta: 3
 
 ('several', 'night') 	Freq bigramma 1
-	Aggettivo: several Freq assoluta: 5
-	Nome: night Freq assoluta: 7 
+	Aggettivo: several 	Freq assoluta: 5
+	Nome: night 	Freq assoluta: 7
 
 
 - Con Probabilità Congiunta
 
 RECENSIONI POSITIVE:
 
-('new', 'Kindle') 
-	Probabilità: 0.000719942404608 
+('new', 'Kindle')
+	Probabilità: 0.000719942404608
 
-('basic', 'Kindle') 
-	Probabilità: 0.000719942404608 
+('basic', 'Kindle')
+	Probabilità: 0.000719942404608
 
-('expensive', 'phones') 
-	Probabilità: 0.000539956803456 
+('expensive', 'phones')
+	Probabilità: 0.000539956803456
 
-('first', 'Kindle') 
-	Probabilità: 0.000539956803456 
+('first', 'Kindle')
+	Probabilità: 0.000539956803456
 
-('micro', 'SD') 
-	Probabilità: 0.000359971202304 
+('micro', 'SD')
+	Probabilità: 0.000359971202304
 
-('last', 'year') 
-	Probabilità: 0.000359971202304 
+('last', 'year')
+	Probabilità: 0.000359971202304
 
-('old', 'phone') 
-	Probabilità: 0.000359971202304 
+('old', 'phone')
+	Probabilità: 0.000359971202304
 
-('good', 'size') 
-	Probabilità: 0.000359971202304 
+('good', 'size')
+	Probabilità: 0.000359971202304
 
-('solid', 'phone') 
-	Probabilità: 0.000359971202304 
+('solid', 'phone')
+	Probabilità: 0.000359971202304
 
-('full', 'charge') 
-	Probabilità: 0.000359971202304 
+('full', 'charge')
+	Probabilità: 0.000359971202304
 
-('excellent', 'quality') 
-	Probabilità: 0.000359971202304 
+('excellent', 'quality')
+	Probabilità: 0.000359971202304
 
-('good', 'battery') 
-	Probabilità: 0.000359971202304 
+('good', 'battery')
+	Probabilità: 0.000359971202304
 
-('most', 'people') 
-	Probabilità: 0.000359971202304 
+('most', 'people')
+	Probabilità: 0.000359971202304
 
-('chinese', 'phones') 
-	Probabilità: 0.000359971202304 
+('chinese', 'phones')
+	Probabilità: 0.000359971202304
 
-('other', 'models') 
-	Probabilità: 0.000359971202304 
+('other', 'models')
+	Probabilità: 0.000359971202304
 
-('good', 'phone') 
-	Probabilità: 0.000359971202304 
+('good', 'phone')
+	Probabilità: 0.000359971202304
 
-('excellent', 'price') 
-	Probabilità: 0.000359971202304 
+('excellent', 'price')
+	Probabilità: 0.000359971202304
 
-('light', 'screen') 
-	Probabilità: 0.000359971202304 
+('light', 'screen')
+	Probabilità: 0.000359971202304
 
-('other', 'phones') 
-	Probabilità: 0.000179985601152 
+('other', 'phones')
+	Probabilità: 0.000179985601152
 
-('new', 'Oasis') 
-	Probabilità: 0.000179985601152 
+('new', 'Oasis')
+	Probabilità: 0.000179985601152
 
 
 RECENSIONI NEGATIVE:
 
-('hot', 'water') 
-	Probabilità: 0.000395491398062 
+('hot', 'water')
+	Probabilità: 0.000395491398062
 
-('poor', 'quality') 
-	Probabilità: 0.000395491398062 
+('poor', 'quality')
+	Probabilità: 0.000395491398062
 
-('same', 'phone') 
-	Probabilità: 0.000395491398062 
+('same', 'phone')
+	Probabilità: 0.000395491398062
 
-('better', 'phone') 
-	Probabilità: 0.000197745699031 
+('better', 'phone')
+	Probabilità: 0.000197745699031
 
-('other', 'phone') 
-	Probabilità: 0.000197745699031 
+('other', 'phone')
+	Probabilità: 0.000197745699031
 
-('last', 'Apple') 
-	Probabilità: 0.000197745699031 
+('last', 'Apple')
+	Probabilità: 0.000197745699031
 
-('sleep', 'screen') 
-	Probabilità: 0.000197745699031 
+('sleep', 'screen')
+	Probabilità: 0.000197745699031
 
-('new', 'cord') 
-	Probabilità: 0.000197745699031 
+('new', 'cord')
+	Probabilità: 0.000197745699031
 
-('easy', 'product') 
-	Probabilità: 0.000197745699031 
+('easy', 'product')
+	Probabilità: 0.000197745699031
 
-('good', 'cable') 
-	Probabilità: 0.000197745699031 
+('good', 'cable')
+	Probabilità: 0.000197745699031
 
-('old', 'dirty') 
-	Probabilità: 0.000197745699031 
+('old', 'dirty')
+	Probabilità: 0.000197745699031
 
-('bad', 'dirty') 
-	Probabilità: 0.000197745699031 
+('bad', 'dirty')
+	Probabilità: 0.000197745699031
 
-('different', 'brand') 
-	Probabilità: 0.000197745699031 
+('different', 'brand')
+	Probabilità: 0.000197745699031
 
-('nice', 'day') 
-	Probabilità: 0.000197745699031 
+('nice', 'day')
+	Probabilità: 0.000197745699031
 
-('nice', 'floor') 
-	Probabilità: 0.000197745699031 
+('nice', 'floor')
+	Probabilità: 0.000197745699031
 
-('sleep', 'April') 
-	Probabilità: 0.000197745699031 
+('sleep', 'April')
+	Probabilità: 0.000197745699031
 
-('easy', 'glass') 
-	Probabilità: 0.000197745699031 
+('easy', 'glass')
+	Probabilità: 0.000197745699031
 
-('great', 'months') 
-	Probabilità: 0.000197745699031 
+('great', 'months')
+	Probabilità: 0.000197745699031
 
-('better', 'system') 
-	Probabilità: 0.000197745699031 
+('better', 'system')
+	Probabilità: 0.000197745699031
 
-('several', 'night') 
-	Probabilità: 0.000197745699031 
+('several', 'night')
+	Probabilità: 0.000197745699031
 
 
 - Con Forza Associativa Massima (attraverso la Local Mutual Information)
 
 RECENSIONI POSITIVE:
 
-('basic', 'Kindle') 
-	Local Mutual Information: 28.8440487739 
+('basic', 'Kindle')
+	Local Mutual Information: 28.8440487739
 
-('expensive', 'phones') 
-	Local Mutual Information: 26.941197796 
+('expensive', 'phones')
+	Local Mutual Information: 26.941197796
 
-('new', 'Kindle') 
-	Local Mutual Information: 23.9544790886 
+('new', 'Kindle')
+	Local Mutual Information: 23.9544790886
 
-('last', 'year') 
-	Local Mutual Information: 17.7097367665 
+('last', 'year')
+	Local Mutual Information: 17.7097367665
 
-('full', 'charge') 
-	Local Mutual Information: 17.2649519238 
+('full', 'charge')
+	Local Mutual Information: 17.2649519238
 
-('micro', 'SD') 
-	Local Mutual Information: 17.0658805767 
+('micro', 'SD')
+	Local Mutual Information: 17.0658805767
 
-('first', 'Kindle') 
-	Local Mutual Information: 17.0414924304 
+('first', 'Kindle')
+	Local Mutual Information: 17.0414924304
 
-('chinese', 'phones') 
-	Local Mutual Information: 16.7908735292 
+('chinese', 'phones')
+	Local Mutual Information: 16.7908735292
 
-('most', 'people') 
-	Local Mutual Information: 15.7097367665 
+('most', 'people')
+	Local Mutual Information: 15.7097367665
 
-('other', 'models') 
-	Local Mutual Information: 15.7097367665 
+('other', 'models')
+	Local Mutual Information: 15.7097367665
 
-('excellent', 'quality') 
-	Local Mutual Information: 13.8640724876 
+('excellent', 'quality')
+	Local Mutual Information: 13.8640724876
 
-('good', 'size') 
-	Local Mutual Information: 13.4511707326 
+('good', 'size')
+	Local Mutual Information: 13.4511707326
 
-('light', 'screen') 
-	Local Mutual Information: 12.3648860826 
+('light', 'screen')
+	Local Mutual Information: 12.3648860826
 
-('excellent', 'price') 
-	Local Mutual Information: 12.3088573302 
+('excellent', 'price')
+	Local Mutual Information: 12.3088573302
 
-('solid', 'phone') 
-	Local Mutual Information: 11.4102425275 
+('solid', 'phone')
+	Local Mutual Information: 11.4102425275
 
-('good', 'battery') 
-	Local Mutual Information: 10.7260305739 
+('good', 'battery')
+	Local Mutual Information: 10.7260305739
 
-('old', 'phone') 
-	Local Mutual Information: 8.96545768484 
+('old', 'phone')
+	Local Mutual Information: 8.96545768484
 
-('good', 'phone') 
-	Local Mutual Information: 6.76638633774 
+('good', 'phone')
+	Local Mutual Information: 6.76638633774
 
-('new', 'Oasis') 
-	Local Mutual Information: 6.63247596192 
+('new', 'Oasis')
+	Local Mutual Information: 6.63247596192
 
-('other', 'phones') 
-	Local Mutual Information: 5.98039926534 
+('other', 'phones')
+	Local Mutual Information: 5.98039926534
 
 RECENSIONI NEGATIVE:
 
-('hot', 'water') 
-	Local Mutual Information: 19.4382071248 
+('hot', 'water')
+	Local Mutual Information: 19.4382071248
 
-('poor', 'quality') 
-	Local Mutual Information: 16.9934222821 
+('poor', 'quality')
+	Local Mutual Information: 16.9934222821
 
-('same', 'phone') 
-	Local Mutual Information: 10.1122770994 
+('same', 'phone')
+	Local Mutual Information: 10.1122770994
 
-('different', 'brand') 
-	Local Mutual Information: 9.13414106168 
+('different', 'brand')
+	Local Mutual Information: 9.13414106168
 
-('sleep', 'April') 
-	Local Mutual Information: 7.98213796824 
+('sleep', 'April')
+	Local Mutual Information: 7.98213796824
 
-('easy', 'glass') 
-	Local Mutual Information: 7.98213796824 
+('easy', 'glass')
+	Local Mutual Information: 7.98213796824
 
-('last', 'Apple') 
-	Local Mutual Information: 7.91174864035 
+('last', 'Apple')
+	Local Mutual Information: 7.91174864035
 
-('nice', 'day') 
-	Local Mutual Information: 7.71910356241 
+('nice', 'day')
+	Local Mutual Information: 7.71910356241
 
-('better', 'system') 
-	Local Mutual Information: 7.71910356241 
+('better', 'system')
+	Local Mutual Information: 7.71910356241
 
-('bad', 'dirty') 
-	Local Mutual Information: 7.66020987335 
+('bad', 'dirty')
+	Local Mutual Information: 7.66020987335
 
-('new', 'cord') 
-	Local Mutual Information: 7.49671114107 
+('new', 'cord')
+	Local Mutual Information: 7.49671114107
 
-('easy', 'product') 
-	Local Mutual Information: 7.30406606313 
+('easy', 'product')
+	Local Mutual Information: 7.30406606313
 
-('old', 'dirty') 
-	Local Mutual Information: 7.17478304618 
+('old', 'dirty')
+	Local Mutual Information: 7.17478304618
 
-('great', 'months') 
-	Local Mutual Information: 7.17478304618 
+('great', 'months')
+	Local Mutual Information: 7.17478304618
 
-('several', 'night') 
-	Local Mutual Information: 7.17478304618 
+('several', 'night')
+	Local Mutual Information: 7.17478304618
 
-('nice', 'floor') 
-	Local Mutual Information: 6.71910356241 
+('nice', 'floor')
+	Local Mutual Information: 6.71910356241
 
-('sleep', 'screen') 
-	Local Mutual Information: 6.13414106168 
+('sleep', 'screen')
+	Local Mutual Information: 6.13414106168
 
-('good', 'cable') 
-	Local Mutual Information: 5.22725046608 
+('good', 'cable')
+	Local Mutual Information: 5.22725046608
 
-('better', 'phone') 
-	Local Mutual Information: 4.05613854968 
+('better', 'phone')
+	Local Mutual Information: 4.05613854968
 
-('other', 'phone') 
-	Local Mutual Information: 4.05613854968 
+('other', 'phone')
+	Local Mutual Information: 4.05613854968
 
 
 	Le 2 frasi più probabili con catene di Markov di ordine 0 e 1
 
 RECENSIONI POSITIVE:
 
-Frase più frequente con ordine 0:	['What', 'a', 'phone', '!', '!', '!'] 
-Probabilità:	2.38435838934e-14 
+Frase più frequente con ordine 0:	['What', 'a', 'phone', '!', '!', '!']
+Probabilità:	2.38435838934e-14
 
 	What 	probabilità:	0.000539956803456
 	a 	probabilità:	0.0269978401728
@@ -701,14 +701,14 @@ Probabilità:	2.38435838934e-14
 	! 	probabilità:	0.00503959683225
 	! 	probabilità:	0.00503959683225
 
-Frase più frequente con ordine 1:	['(', 'I', 'did', "n't", '!', ')', '.'] 
-Probabilità:	4.08130614857e-07 
+Frase più frequente con ordine 1:	['(', 'I', 'did', "n't", '!', ')', '.']
+Probabilità:	4.08130614857e-07
 
 
 RECENSIONI NEGATIVE:
 
-Frase più frequente con ordine 0:	['It', 'was', 'terrible', '!', '!', '!'] 
-Probabilità:	1.93342135621e-14 
+Frase più frequente con ordine 0:	['It', 'was', 'terrible', '!', '!', '!']
+Probabilità:	1.93342135621e-14
 
 	It 	probabilità:	0.0025706940874
 	was 	probabilità:	0.0144354360293
@@ -717,6 +717,5 @@ Probabilità:	1.93342135621e-14
 	! 	probabilità:	0.00870081075737
 	! 	probabilità:	0.00870081075737
 
-Frase più frequente con ordine 1:	['It', 'was', 'terrible', '!', '!', '!'] 
-Probabilità:	5.74545225749e-06 
-
+Frase più frequente con ordine 1:	['It', 'was', 'terrible', '!', '!', '!']
+Probabilità:	5.74545225749e-06
