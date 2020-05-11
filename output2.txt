@@ -138,7 +138,7 @@ hot 4
 poor 4
 such 4
 
-20 bigrammi di token più frequenti in ordine di frequenza decrescente
+20 bigrammi di token più frequenti in ordine di frequenza decrescente (punteggiatura, articoli e congiunzioni esclusi)
 
 RECENSIONI POSITIVE:
 ('it', "'s") 11

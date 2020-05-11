@@ -211,7 +211,7 @@ def forzaAssociativaMax(listaAggSost, tokensList):
         # prodotto tra le frequenze delle singole parole
         part2 = fAgg * fSost
         # Local Mutual Information
-        LMI = (freq) * (math.log((part1 * 1.0 / part2 * 1.0), 2))
+        LMI = freq * (math.log((part1 * 1.0 / part2 * 1.0), 2))
         # aggiungo nuovo elemento nella lista, con bigramma e LMI
         bigramma = ((agg, nome), LMI)
         listaBigrLMI.append(bigramma)
@@ -274,6 +274,7 @@ def estraiFrasi(tokensList, frasi):
             listaFrasiTok.append(fraseTok)
 
     return listaFrasiTok, freqToken
+
 
 def calcolaMarkov(tokensList, listaFrasiTok, freqToken):
     # lunghezza corpus
@@ -381,7 +382,7 @@ def main(file1, file2):
     lista20Bigr1 = elem20PiuFreqDecresc(listaBigr1)
     lista20Bigr2 = elem20PiuFreqDecresc(listaBigr2)
 
-    print "\n20 bigrammi di token più frequenti in ordine di frequenza decrescente"
+    print "\n20 bigrammi di token più frequenti in ordine di frequenza decrescente (punteggiatura, articoli e congiunzioni esclusi)"
     print "\nRECENSIONI POSITIVE:\n",
     for bigramma in lista20Bigr1:
         print bigramma[0], bigramma[1]
@@ -476,14 +477,13 @@ def main(file1, file2):
 
     # 20 bigrammi aggettivo-sostantivo con forza associativa max (attraverso la LMI)
     print "\n- Con Forza Associativa Massima (attraverso la Local Mutual Information)\n"
+
     print "RECENSIONI POSITIVE:\n"
-
     bigrLMI1 = forzaAssociativaMax(bigr20AggSost1, tokensList1)
-
     for elem in bigrLMI1:
         print elem[0], "\n\tLocal Mutual Information:", elem[1], "\n"
-    print "RECENSIONI NEGATIVE:\n"
 
+    print "RECENSIONI NEGATIVE:\n"
     bigrLMI2 = forzaAssociativaMax(bigr20AggSost2, tokensList2)
     for elem in bigrLMI2:
         print elem[0], "\n\tLocal Mutual Information:", elem[1], "\n"
@@ -491,10 +491,14 @@ def main(file1, file2):
     # Le 2 frasi più probabili con catene di Markov di ordine 0 e 1
     # RECENSIONI POSITIVE
     listaFrasiTok1, freqToken1 = estraiFrasi(tokensList1, frasi1)
-    frasePiuFreq0_1, probMassima0_1, probTokMax1, frasePiuFreq1_1, probMassima1_1 = calcolaMarkov(tokensList1, listaFrasiTok1, freqToken1)
+    frasePiuFreq0_1, probMassima0_1, probTokMax1, frasePiuFreq1_1, probMassima1_1 = calcolaMarkov(tokensList1,
+                                                                                                  listaFrasiTok1,
+                                                                                                  freqToken1)
     # RECENSIONI NEGATIVE
     listaFrasiTok2, freqToken2 = estraiFrasi(tokensList2, frasi2)
-    frasePiuFreq0_2, probMassima0_2, probTokMax2, frasePiuFreq1_2, probMassima1_2 = calcolaMarkov(tokensList2, listaFrasiTok2, freqToken2)
+    frasePiuFreq0_2, probMassima0_2, probTokMax2, frasePiuFreq1_2, probMassima1_2 = calcolaMarkov(tokensList2,
+                                                                                                  listaFrasiTok2,
+                                                                                                  freqToken2)
 
     print "\n\tLe 2 frasi più probabili con catene di Markov di ordine 0 e 1"
     print "\nRECENSIONI POSITIVE:\n"
