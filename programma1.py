@@ -176,14 +176,15 @@ def main(file1, file2):
     lungToken1 = lungMediaToken(tokensList1, numToken1)
     lungToken2 = lungMediaToken(tokensList2, numToken2)
     print "\nLUNGHEZZA MEDIA FRASI E TOKEN\n"
-    print "RECENSIONI POSITIVE:\n Lunghezza media frasi in token:\t", lungFrasi1, "\tLunghezza media token:", lungToken1
-    print "RECENSIONI NEGATIVE:\n Lunghezza media frasi in token:\t", lungFrasi2, "\tLunghezza media token:", lungToken2, "\n"
+    print "RECENSIONI POSITIVE:\n Lunghezza media frasi in token:\t", lungFrasi1, "\tLunghezza media token in caratteri:", lungToken1
+    print "RECENSIONI NEGATIVE:\n Lunghezza media frasi in token:\t", lungFrasi2, "\tLunghezza media token in caratteri:", lungToken2, "\n"
     if (lungFrasi1 > lungFrasi2):
         print " Il corpus recensioni positive presenta un maggior numero medio di token per frase"
     if (lungFrasi1 < lungFrasi2):
         print " Il corpus recensioni negative presenta un maggior numero medio di token per frase"
     if (lungFrasi1 == lungFrasi2):
         print " I corpora presentano lo stesso numero medio di token per frase"
+
     if (lungToken1 > lungToken2):
         print " Il corpus recensioni positive presenta un maggior numero medio di caratteri per token"
     if (lungToken1 < lungToken2):
@@ -234,9 +235,9 @@ def main(file1, file2):
     freq2V3, freq2V6, freq2V9 = classeFreq(tokensList2[0:5000])
     print "\nCLASSI DI FREQUENZA V3, V6 e V9"
     print "\nRECENSIONI POSITIVE:"
-    print " V3:\t", freq1V3, "\tV6:\t", freq1V6, "\tV9:\t", freq1V9
+    print " |V3|:\t", freq1V3, "\t|V6|:\t", freq1V6, "\t|V9|:\t", freq1V9
     print "RECENSIONI NEGATIVE:"
-    print " V3:\t", freq2V3, "\tV6:\t", freq2V6, "\tV9:\t", freq2V9
+    print " |V3|:\t", freq2V3, "\t|V6|:\t", freq2V6, "\t|V9|:\t", freq2V9
 
     # NUMERO MEDIO SOSTANTIVI, AVVERBI E VERBI PER FRASE
     # totale nomi, verbi e aggettivi nel corpus di ogni file
